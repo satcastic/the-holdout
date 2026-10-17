@@ -1,0 +1,686 @@
+# =============================================================================
+# case_01.yaml - PLAYER-FACING CASE DATA ("The Holdout")
+# Everything in this file may be embedded in Pinecone. The hidden truth lives in
+# solution.json and must never be embedded or shown to a suspect node.
+#
+# Fact chunk schema (one Pinecone record per chunk):
+#   id                F01..F30
+#   type              evidence type (incident_report, slack_message, access_log, ...)
+#   title             short label
+#   day / time        when the fact happened: ISO date; HH:MM[:SS] or HH:MM-HH:MM (Pacific Time) or null
+#   location          canonical location from vocabulary.locations, or null
+#   entities          lowercase ids of people / objects / systems mentioned (for query rewriting)
+#   known_by          who may retrieve it: suspect ids or channels (records, scene, forensics, case_file)
+#   reveal_condition  list of clue ids that must ALL be discovered first; [] = freely available
+#   clue_id           clue unlocked by finding this chunk, or null
+#   text              the text that gets embedded
+# =============================================================================
+schema_version: "1.0"
+
+case:
+  id: case_01
+  title: "The Holdout"
+  setting: >-
+    Veridia AI, a venture-backed clinical-AI startup on floors 11 and 12 of the
+    Harlan Building in SoMa, San Francisco. Its product, TriageOne, is an AI
+    triage assistant used by hospitals.
+  premise: >-
+    Hours before she was due to blow the whistle on a hidden flaw in TriageOne,
+    Veridia AI's lead systems architect is found dead in a latched server room.
+    The Series C closes on Monday. Four people had every reason to want her
+    silent.
+  crime_night: "2026-11-12"
+  discovered: "2026-11-13 06:15"
+  timezone: "America/Los_Angeles"
+  victim:
+    id: elena
+    name: "Elena Voss"
+    role: "Lead Systems Architect"
+    age: 41
+
+vocabulary:
+  time_format: "24-hour HH:MM or HH:MM:SS, Pacific Time; dates ISO YYYY-MM-DD"
+  locations:
+    - "Harlan Building"
+    - "Server Room 11-S"
+    - "Cage C3"
+    - "Corridor 11-E"
+    - "Corridor 11-W"
+    - "Office 11-A"
+    - "Engineering Bullpen"
+    - "Presidio Boardroom"
+    - "CEO Office 12-A"
+    - "Lobby Turnstile"
+    - "Mission Street Entrance"
+    - "Loading Dock LD-1"
+    - "Elevator Bank"
+    - "East Stairwell B"
+    - "Garage Level P2"
+    - "Marlowe & Pine"
+    - "Pacific Heights Residence"
+    - "Noe Valley Residence"
+    - "Oakland Residence"
+    - "Atherton Residence"
+    - "In transit"
+  objects_and_systems:
+    - "GPU sled"
+    - "Shelf B"
+    - "Rack R7"
+    - "step stool"
+    - "ELENA-LAPTOP-01"
+    - "Elena's smartwatch"
+    - "Eval Integrity Report v3"
+    - "PR #2291"
+    - "svc-eval-sync"
+    - "ALERT-DS-INTEGRITY"
+    - "CHG-3920"
+    - "CHG-4471"
+    - "CAM-11E2"
+    - "CAM-C3-INT"
+    - "AP-11-East"
+    - "Veridia-Guest"
+    - "APAC Reseller Sync"
+    - "Clinical Performance Attestation"
+    - "TriageOne"
+    - "Saint Aurelian Health"
+    - "Larkspur Capital"
+    - "Northgate Secondaries"
+    - "Parkwise"
+
+actors:
+  - {id: records,   kind: channel, description: "Digital records and logs a detective can request"}
+  - {id: scene,     kind: channel, description: "Physical evidence at the scene"}
+  - {id: forensics, kind: channel, description: "Medical examiner and device forensics"}
+  - {id: case_file, kind: channel, description: "Police case file: incident report and interview transcripts"}
+  - {id: tobias,    kind: suspect, description: "Tobias Lindqvist"}
+  - {id: marisol,   kind: suspect, description: "Marisol Quintero"}
+  - {id: grant,     kind: suspect, description: "Grant Ostrowski"}
+  - {id: sam,       kind: suspect, description: "Sam Ibarra"}
+
+suspects:
+  - id: tobias
+    name: "Tobias Lindqvist"
+    role: "VP Engineering, Veridia AI"
+    age: 47
+    public_bio: >-
+      Joined Veridia AI in 2023 and was Elena's direct manager. Known inside
+      the company for hitting launch dates.
+    speech_style: "Measured and collegial; steers conversations toward process and tooling."
+    interview_chunk: F27
+  - id: marisol
+    name: "Marisol Quintero"
+    role: "CEO and co-founder, Veridia AI"
+    age: 44
+    public_bio: >-
+      Co-founded Veridia AI and has led it through three funding rounds. Warm
+      and polished in public, blunt in private.
+    speech_style: "Polished; speaks in 'we'; emotional when cornered."
+    interview_chunk: F28
+  - id: grant
+    name: "Grant Ostrowski"
+    role: "Board director; Partner, Larkspur Capital"
+    age: 58
+    public_bio: >-
+      Larkspur Capital led the Series B and Grant has held a board seat since.
+      He sits on the audit committee.
+    speech_style: "Dry and clipped; cites fiduciary duty and process."
+    interview_chunk: F29
+  - id: sam
+    name: "Sam Ibarra"
+    role: "Head of Security & Infrastructure, Veridia AI"
+    age: 36
+    public_bio: >-
+      Runs the badge, camera and on-prem datacenter systems for floors 9 to 12.
+      Has admin rights on most internal tooling.
+    speech_style: "Technical and defensive; over-explains logs."
+    interview_chunk: F30
+
+fact_chunks:
+  - id: F01
+    type: incident_report
+    title: "Discovery of Elena Voss in Server Room 11-S"
+    day: "2026-11-13"
+    time: "06:15"
+    location: "Server Room 11-S"
+    entities: [elena, step_stool, rack_r7]
+    known_by: [scene, case_file]
+    reveal_condition: []
+    clue_id: null
+    text: >-
+      Incident report, 2026-11-13 06:15. A facilities technician badged into
+      Server Room 11-S at 06:12 for a scheduled filter check and found Elena
+      Voss, Lead Systems Architect at Veridia AI, unresponsive on the floor
+      between Rack R7 and the supply cart. Paramedics pronounced her dead at
+      06:24. A step stool lay on its side beside her. There were no signs of
+      forced entry and the door of Server Room 11-S had latched shut behind the
+      technician.
+
+  - id: F02
+    type: forensics_report
+    title: "Preliminary medical examiner finding"
+    day: "2026-11-12"
+    time: "22:15-23:15"
+    location: null
+    entities: [elena, rack_r7, step_stool]
+    known_by: [forensics, case_file]
+    reveal_condition: []
+    clue_id: C01
+    text: >-
+      Preliminary medical examiner finding (ME case 26-1182), issued
+      2026-11-13. Cause of death: single blunt-force injury to the posterior
+      left skull. Manner of death: homicide. Estimated time of death window:
+      22:15 to 23:15 on 2026-11-12, from body temperature and rigor. The wound
+      has a straight 3.8 cm edge. It does not match the 1.2 cm rounded corner
+      of Rack R7 or a fall from the 46 cm step stool; a flat-edged metal object
+      is more consistent.
+
+  - id: F03
+    type: scene_report
+    title: "Scene notes, Server Room 11-S"
+    day: "2026-11-13"
+    time: "06:30"
+    location: "Server Room 11-S"
+    entities: [gpu_sled, shelf_b, step_stool, elena_laptop_01, elena_smartwatch]
+    known_by: [scene, forensics]
+    reveal_condition: []
+    clue_id: null
+    text: >-
+      Scene notes, Server Room 11-S, 2026-11-13 06:30. The GPU sled (a 3.2 kg
+      aluminum server tray) on Shelf B of the supply cart has been wiped with
+      an alcohol wipe; residue in its seam tests presumptive-positive for
+      blood. The step stool lay on its side 0.8 m from the body with clean
+      rubber feet. ELENA-LAPTOP-01 lay open on the bench with its screen
+      locked. Elena's smartwatch was on her left wrist.
+
+  - id: F04
+    type: wearable_data
+    title: "Elena's smartwatch export"
+    day: "2026-11-12"
+    time: "22:41:07"
+    location: "Server Room 11-S"
+    entities: [elena, elena_smartwatch]
+    known_by: [forensics]
+    reveal_condition: [C01]
+    clue_id: C07
+    text: >-
+      Elena's smartwatch export, recovered from her left wrist and extracted
+      2026-11-13 11:20. Heart rate was 78 bpm at 22:30 and rose to 131 bpm by
+      22:40. A high-impact event was logged at 22:41:07 and no pulse was
+      detected from 22:41:30 onward. The watch clock was synced to network time
+      within 1 second.
+
+  - id: F05
+    type: email
+    title: "Scheduled email to the board"
+    day: "2026-11-13"
+    time: "08:00"
+    location: null
+    entities: [elena, board, eval_integrity_report_v3, saint_aurelian_health]
+    known_by: [records, case_file, marisol, grant, tobias, sam]
+    reveal_condition: []
+    clue_id: C02
+    text: >-
+      Email sent by Elena Voss, scheduled on 2026-11-12 at 20:11 and delivered
+      on 2026-11-13 at 08:00 to the Veridia AI board (Marisol Quintero, Grant
+      Ostrowski and two independent directors). Subject: Eval Integrity Report
+      v3 - decision needed before Monday. Body: "Attached is my full write-up
+      on the TriageOne evaluation contamination. I recommend pausing the Saint
+      Aurelian Health rollout until it is resolved." Attachment: Eval Integrity
+      Report v3.pdf.
+
+  - id: F06
+    type: document
+    title: "Eval Integrity Report v3, summary"
+    day: "2026-11-12"
+    time: null
+    location: null
+    entities: [eval_integrity_report_v3, pr_2291, svc_eval_sync, alert_ds_integrity, chg_3920, cage_c3, triageone, saint_aurelian_health]
+    known_by: [records, marisol, grant, tobias, sam]
+    reveal_condition: [C02]
+    clue_id: C03
+    text: >-
+      Eval Integrity Report v3 (final, 14 pages), summary. On 2026-09-03 at
+      02:14, PR #2291 merged through the service account svc-eval-sync added
+      the holdout-v2 clinical-safety evaluation set to the nightly training
+      refresh. The merge bypassed the two-reviewer rule through a VP-level
+      override. ALERT-DS-INTEGRITY had been disabled on 2026-08-19 under
+      CHG-3920, so nothing flagged the leak. The reported 97.4% critical-case
+      recall of TriageOne is inflated; on a clean holdout it is 81.0%, with the
+      largest drop in sepsis-risk cases. Appendix C also flags an unmetered 3.4
+      kW load on a rack PDU in Cage C3 that appears in no billing record.
+      Recommendation: pause the Saint Aurelian Health rollout scheduled for
+      2026-11-16 and notify customers.
+
+  - id: F07
+    type: git_audit
+    title: "Repository audit entry for PR #2291"
+    day: "2026-09-03"
+    time: "02:14:09"
+    location: null
+    entities: [pr_2291, svc_eval_sync, tobias, triage_core_repo]
+    known_by: [records, tobias]
+    reveal_condition: [C03]
+    clue_id: C04
+    text: >-
+      Repository audit log, repo veridia/triage-core. PR #2291 "eval-sync:
+      include holdout-v2 in nightly refresh", authored by svc-eval-sync, merged
+      2026-09-03 02:14:09 PT. Branch protection requires 2 approving reviews.
+      The merge was completed with the "VP override" flag by user t.lindqvist
+      (Tobias Lindqvist, VP Engineering). Approving reviews recorded: 0.
+
+  - id: F08
+    type: change_ticket
+    title: "Change ticket CHG-3920"
+    day: "2026-08-19"
+    time: null
+    location: null
+    entities: [chg_3920, alert_ds_integrity, sam]
+    known_by: [records, sam]
+    reveal_condition: [C03]
+    clue_id: C05
+    text: >-
+      Change ticket CHG-3920, 2026-08-19. Title: "Disable ALERT-DS-INTEGRITY
+      dataset-integrity alert on nightly refresh - noise reduction." Requested
+      and approved by s.ibarra (Sam Ibarra, Head of Security & Infrastructure).
+      Risk rating: low. As of 2026-11-12 the alert had not been re-enabled.
+
+  - id: F09
+    type: document
+    title: "Clinical Performance Attestation"
+    day: "2026-09-19"
+    time: null
+    location: null
+    entities: [clinical_performance_attestation, tobias, saint_aurelian_health, triageone]
+    known_by: [records, tobias, marisol]
+    reveal_condition: [C03]
+    clue_id: C06
+    text: >-
+      Clinical Performance Attestation to Saint Aurelian Health, signed
+      2026-09-19 by Tobias Lindqvist, VP Engineering. It states that he
+      personally attests TriageOne achieves 97.4% critical-case recall on an
+      independent holdout set never used in training. The attestation is a
+      condition of the master services agreement and carries personal
+      certification language.
+
+  - id: F10
+    type: slack_message
+    title: "Slack DM, Elena and Tobias"
+    day: "2026-11-12"
+    time: "18:10-18:16"
+    location: null
+    entities: [elena, tobias, server_room_11_s]
+    known_by: [records, tobias]
+    reveal_condition: [C04]
+    clue_id: C24
+    text: >-
+      Slack DM, 2026-11-12, 18:10 to 18:16. Elena Voss: "Heads up, the
+      integrity write-up goes to the board at 08:00 tomorrow. You should read
+      the section on Sept 3 first." Tobias Lindqvist: "Hold off on sending.
+      Let's sync before Friday." Elena Voss: "Not tonight, I'll be heads down
+      in Server Room 11-S. Catch me tomorrow."
+
+  - id: F11
+    type: calendar_entry
+    title: "Calendar entry and door log, Presidio Boardroom"
+    day: "2026-11-12"
+    time: "20:30-21:00"
+    location: "Presidio Boardroom"
+    entities: [marisol, elena, presidio_boardroom]
+    known_by: [records, marisol]
+    reveal_condition: []
+    clue_id: C17
+    text: >-
+      Calendar entry: "M/E sync", Presidio Boardroom, 20:30 to 21:00 on
+      2026-11-12, organizer Marisol Quintero, attendee Elena Voss. Presidio
+      Boardroom door log: m.quintero IN 20:28:40, e.voss IN 20:29:15, e.voss OUT
+      20:54:50, m.quintero OUT 20:55:30.
+
+  - id: F12
+    type: slack_message
+    title: "Slack DM, Marisol and Elena"
+    day: "2026-11-12"
+    time: "21:02-21:04"
+    location: "CEO Office 12-A"
+    entities: [marisol, elena]
+    known_by: [records, marisol]
+    reveal_condition: [C17]
+    clue_id: C18
+    text: >-
+      Slack DM, 2026-11-12, 21:02. Marisol Quintero: "Thanks for the time
+      earlier. Please think hard about the retention package. Let's keep this
+      between us until the close on Monday." Elena Voss, 21:04: "I've thought
+      about it. The answer is still no. The report goes out."
+
+  - id: F13
+    type: access_log
+    title: "Badge door log, Server Room 11-S"
+    day: "2026-11-12"
+    time: "22:19:07"
+    location: "Server Room 11-S"
+    entities: [elena, server_room_11_s]
+    known_by: [records]
+    reveal_condition: [C01]
+    clue_id: C08
+    text: >-
+      Badge door log, Server Room 11-S, 2026-11-12 18:00 to 2026-11-13 06:12.
+      e.voss IN 22:19:07. Door-held-open alarm from 22:26:14 to 22:28:02 (1 min
+      48 s), cleared when the door latched. No other badge events until the
+      facilities technician IN 06:12:30 on 2026-11-13. The inside of the door
+      has no badge reader (free egress), so exits are not logged.
+
+  - id: F14
+    type: access_log
+    title: "Lobby Turnstile exit-reader log"
+    day: "2026-11-12"
+    time: "19:42:10-22:05:33"
+    location: "Lobby Turnstile"
+    entities: [lobby_turnstile, sam, tobias, marisol, grant]
+    known_by: [records]
+    reveal_condition: [C07]
+    clue_id: C09
+    text: >-
+      Lobby Turnstile exit-reader log, 2026-11-12 19:00 to 23:59 (badge tap plus
+      optical passage sensor). s.ibarra OUT tap 19:42:10, passage detected.
+      t.lindqvist OUT tap 21:19:42, passage NOT detected, gate re-latched after
+      8 s. m.quintero OUT tap 22:05:33, passage detected. No tap recorded for
+      g.ostrowski. No other exits logged.
+
+  - id: F15
+    type: access_log
+    title: "Loading Dock LD-1 door log"
+    day: "2026-11-12"
+    time: "21:58:21-23:31:10"
+    location: "Loading Dock LD-1"
+    entities: [loading_dock_ld_1, sam, freight_elevator_fe_1]
+    known_by: [records]
+    reveal_condition: [C07]
+    clue_id: C10
+    text: >-
+      Loading Dock LD-1 door log, 2026-11-12. s.ibarra IN 21:58:21. s.ibarra OUT
+      23:31:10. No other badge events from 18:00 to 06:00. The freight elevator
+      FE-1 call log shows a single trip from Loading Dock LD-1 to floor 11 at
+      21:59:02.
+
+  - id: F16
+    type: access_log
+    title: "Cage C3 door log"
+    day: "2026-11-12"
+    time: "22:02:10-23:20:44"
+    location: "Cage C3"
+    entities: [cage_c3, sam]
+    known_by: [records, sam]
+    reveal_condition: [C10]
+    clue_id: C11
+    text: >-
+      Cage C3 door log, 2026-11-12. s.ibarra IN 22:02:10. s.ibarra OUT 23:20:44.
+      No other entries. The cage door has no tailgate sensor.
+
+  - id: F17
+    type: camera_summary
+    title: "Camera status report and CHG-4471"
+    day: "2026-11-12"
+    time: "22:00-23:30"
+    location: "Corridor 11-E"
+    entities: [cam_11e2, chg_4471, corridor_11_e, server_room_11_s, sam]
+    known_by: [records, sam]
+    reveal_condition: [C08]
+    clue_id: C14
+    text: >-
+      Camera status report. CAM-11E2 (Corridor 11-E, outside Server Room 11-S)
+      was offline from 22:00 to 23:30 on 2026-11-12 during firmware rollout
+      CHG-4471 across all cameras on floors 9 to 12. CHG-4471 was filed by
+      s.ibarra on 2026-11-10 and approved by the three-person change board on
+      2026-11-11, before the evening of the incident. CAM-LOBBY-1, CAM-LD1 and
+      CAM-C3-INT stayed online.
+
+  - id: F18
+    type: camera_summary
+    title: "CAM-C3-INT footage summary"
+    day: "2026-11-12"
+    time: "22:02:10-23:20:44"
+    location: "Cage C3"
+    entities: [cam_c3_int, cage_c3, sam]
+    known_by: [records]
+    reveal_condition: [C07, C11]
+    clue_id: C12
+    text: >-
+      CAM-C3-INT footage summary from the vendor cloud archive (immutable copy;
+      archive hash matches the local recorder). Sam Ibarra is in frame inside
+      Cage C3 continuously from 22:02:10 to 23:20:44 on 2026-11-12, working at
+      the bench beside rack C3-04. He does not leave frame at any point. Frame
+      timestamps are synced to network time.
+
+  - id: F19
+    type: pdu_power_log
+    title: "Rack PDU log, Cage C3"
+    day: "2026-11-12"
+    time: "22:04-23:18"
+    location: "Cage C3"
+    entities: [cage_c3, rack_pdu, sam, mining_rig_07]
+    known_by: [records, sam]
+    reveal_condition: [C11]
+    clue_id: C13
+    text: >-
+      Rack PDU log, Cage C3, 2026-11-12. Draw rose to 3.4 kW at 22:04 and held
+      until 23:18. Outlets C3-04 A and B are labelled "mining-rig-07" in the PDU
+      console and are attached to no customer contract or billing meter. The
+      console configuration was last changed by s.ibarra on 2026-07-02.
+
+  - id: F20
+    type: rideshare_record
+    title: "Rideshare trip record, Marisol Quintero"
+    day: "2026-11-12"
+    time: "22:09-22:31"
+    location: "Mission Street Entrance"
+    entities: [marisol, mission_street_entrance, pacific_heights_residence]
+    known_by: [records, marisol]
+    reveal_condition: [C09]
+    clue_id: C15
+    text: >-
+      Rideshare trip record, rider account m.quintero, 2026-11-12. Pickup at the
+      Harlan Building Mission Street Entrance at 22:09. Drop-off at Pacific
+      Heights Residence at 22:31. Trip distance 4.1 km.
+
+  - id: F21
+    type: smart_lock_log
+    title: "Smart-lock and doorbell log, Pacific Heights Residence"
+    day: "2026-11-12"
+    time: "22:33:50"
+    location: "Pacific Heights Residence"
+    entities: [marisol, pacific_heights_residence]
+    known_by: [records, marisol]
+    reveal_condition: [C15]
+    clue_id: C16
+    text: >-
+      Smart-lock and doorbell log, Pacific Heights Residence (Quintero
+      household), 2026-11-12. The doorbell camera records Marisol Quintero
+      arriving at 22:33:50. The front door was unlocked with her code at
+      22:34:20. No further door events until 06:41 on 2026-11-13.
+
+  - id: F22
+    type: email
+    title: "Email from Northgate Secondaries to Grant Ostrowski"
+    day: "2026-11-12"
+    time: "14:22"
+    location: null
+    entities: [grant, northgate_secondaries, larkspur_capital, marlowe_and_pine]
+    known_by: [records, grant]
+    reveal_condition: [C03]
+    clue_id: C19
+    text: >-
+      Email from Adaeze Obi (Northgate Secondaries) to Grant Ostrowski,
+      2026-11-12 14:22. "Dinner is confirmed for 20:45 tonight at Marlowe &
+      Pine. Bring the draft purchase agreement for Larkspur Capital's Veridia
+      shares. We still want to sign Monday at the current price."
+
+  - id: F23
+    type: pos_record
+    title: "Marlowe & Pine point-of-sale record, check #6302"
+    day: "2026-11-12"
+    time: "20:52-22:51"
+    location: "Marlowe & Pine"
+    entities: [grant, marlowe_and_pine, larkspur_capital, parkwise]
+    known_by: [records, grant]
+    reveal_condition: [C19, C07]
+    clue_id: C20
+    text: >-
+      Marlowe & Pine point-of-sale record, check #6302, Table 9, 2026-11-12.
+      Opened 20:52. Dessert and amaro ordered at 22:34. Tableside terminal PIN
+      entry for a Larkspur Capital corporate card at 22:38:20 (cardholder G.
+      Ostrowski). Final signature closed the check at 22:49. Parkwise valet
+      ticket redeemed at 22:51. Marlowe & Pine is 3.2 km from the Harlan
+      Building, at least 11 minutes by car at that hour.
+
+  - id: F24
+    type: call_platform_log
+    title: "Participant log, APAC Reseller Sync"
+    day: "2026-11-12"
+    time: "22:10:03-22:57:41"
+    location: null
+    entities: [tobias, apac_reseller_sync, veridia_guest, meiling_tan]
+    known_by: [records, tobias]
+    reveal_condition: [C09]
+    clue_id: C21
+    text: >-
+      Video-conference participant log, meeting "APAC Reseller Sync" (host
+      Meiling Tan, Singapore), 2026-11-12. t.lindqvist (iPhone) joined at
+      22:10:03 and left at 22:57:41; microphone muted and camera off for the
+      whole session. Client IP 203.0.113.44 resolves to the Veridia-Guest Wi-Fi
+      NAT egress at the Harlan Building. Lindqvist's four previous sessions came
+      from the home-ISP range 198.51.100.0/24.
+
+  - id: F25
+    type: wifi_controller_log
+    title: "Wi-Fi association log, Veridia-Guest"
+    day: "2026-11-12"
+    time: "21:31:08-22:58:12"
+    location: null
+    entities: [tobias, veridia_guest, ap_11_east]
+    known_by: [records]
+    reveal_condition: [C21]
+    clue_id: C22
+    text: >-
+      Wi-Fi controller association log, SSID Veridia-Guest, 2026-11-12. The
+      device with MAC ending :4C, registered in MDM to t.lindqvist (iPhone),
+      associated with AP-11-East at 21:31:08 and disassociated at 22:58:12.
+      AP-11-East covers the east side of floor 11: Corridor 11-E, Office 11-A
+      and Server Room 11-S. No association to any other access point that night.
+
+  - id: F26
+    type: drive_audit_log
+    title: "Shared-drive audit log"
+    day: "2026-11-12"
+    time: "22:52:31"
+    location: null
+    entities: [elena, elena_laptop_01, eval_integrity_report_v3, ap_11_east]
+    known_by: [records]
+    reveal_condition: [C03, C07]
+    clue_id: C23
+    text: >-
+      Shared-drive audit log, 2026-11-12. "Eval Integrity Report v3.docx" and
+      the folder "Eval Integrity - Evidence" were moved to the trash by e.voss
+      at 22:52:31 from device ELENA-LAPTOP-01 on AP-11-East (session active
+      since 08:14). The device was found in Server Room 11-S on 2026-11-13. The
+      scheduled 08:00 board email, already queued on the mail server, was not
+      affected.
+
+  - id: F27
+    type: interview_transcript
+    title: "Interview, Tobias Lindqvist"
+    day: "2026-11-13"
+    time: "09:40"
+    location: null
+    entities: [tobias, lobby_turnstile, apac_reseller_sync, noe_valley_residence, elena]
+    known_by: [tobias, case_file]
+    reveal_condition: []
+    clue_id: null
+    text: >-
+      Interview transcript, Tobias Lindqvist, VP Engineering, 2026-11-13 09:40.
+      Q: When did you leave last night? A: Around 21:20. I badged out at the
+      Lobby Turnstile and went straight home to Noe Valley Residence. I was
+      home by about 21:45. Q: Any contact after that? A: At 22:10 I joined a
+      call with our Singapore reseller partner from my home office, on my
+      phone. I mostly listened. I dropped off about 22:57 and went to bed. Q:
+      When did you last see Elena? A: Around 17:00 yesterday. I had no idea she
+      planned to send anything to the board.
+
+  - id: F28
+    type: interview_transcript
+    title: "Interview, Marisol Quintero"
+    day: "2026-11-13"
+    time: "10:30"
+    location: null
+    entities: [marisol, elena, lobby_turnstile, pacific_heights_residence]
+    known_by: [marisol, case_file]
+    reveal_condition: []
+    clue_id: null
+    text: >-
+      Interview transcript, Marisol Quintero, CEO, 2026-11-13 10:30. Q: When did
+      you last speak with Elena? A: Wednesday, in passing at the engineering
+      standup. Q: Were you aware of any report she was preparing? A: No. I
+      first saw it this morning in my inbox, like the rest of the board. Q: When
+      did you leave last night? A: Around 22:00. I went home. I couldn't give
+      you exact times.
+
+  - id: F29
+    type: interview_transcript
+    title: "Interview, Grant Ostrowski"
+    day: "2026-11-13"
+    time: "11:15"
+    location: null
+    entities: [grant, larkspur_capital, atherton_residence, elena]
+    known_by: [grant, case_file]
+    reveal_condition: []
+    clue_id: null
+    text: >-
+      Interview transcript, Grant Ostrowski, Board Director and Partner at
+      Larkspur Capital, 2026-11-13 11:15. Q: Where were you Thursday evening? A:
+      At Atherton Residence the whole evening. Dinner alone, in bed by 22:30.
+      Q: Have you spoken with Elena recently? A: Not in weeks. I learned of her
+      report from the board email this morning. Q: Do you have a personal stake
+      in Monday's closing? A: Larkspur is an existing investor. Beyond that,
+      no.
+
+  - id: F30
+    type: interview_transcript
+    title: "Interview, Sam Ibarra"
+    day: "2026-11-13"
+    time: "12:00"
+    location: null
+    entities: [sam, lobby_turnstile, oakland_residence, cam_11e2, chg_4471]
+    known_by: [sam, case_file]
+    reveal_condition: []
+    clue_id: null
+    text: >-
+      Interview transcript, Sam Ibarra, Head of Security & Infrastructure,
+      2026-11-13 12:00. Q: When did you leave last night? A: 19:42. I badged out
+      at the Lobby Turnstile and drove home to Oakland Residence. I was home
+      about 20:30. Q: Anything unusual in the building systems? A: The camera
+      firmware rollout ran as scheduled. It was a routine change. I haven't
+      been back in the Harlan Building since I left Thursday evening.
+
+clues:
+  - {id: C01, source_chunk: F02, notebook: "ME: homicide by a single blunt-force injury; time-of-death window 22:15-23:15; wound does not match a fall."}
+  - {id: C02, source_chunk: F05, notebook: "Elena's scheduled email delivered her integrity report to the board at 08:00 Friday."}
+  - {id: C03, source_chunk: F06, notebook: "Report: evaluation set leaked into training via PR #2291; recall inflated from 81.0% to a reported 97.4%; alert disabled under CHG-3920; unmetered 3.4 kW load in Cage C3."}
+  - {id: C04, source_chunk: F07, notebook: "PR #2291 merged at 02:14 on 2026-09-03 with a VP override and zero reviewer approvals."}
+  - {id: C05, source_chunk: F08, notebook: "ALERT-DS-INTEGRITY was disabled under CHG-3920, requested and approved by Sam Ibarra."}
+  - {id: C06, source_chunk: F09, notebook: "A personal attestation of 97.4% recall was signed for Saint Aurelian Health on 2026-09-19."}
+  - {id: C07, source_chunk: F04, notebook: "Elena's watch: high-impact event at 22:41:07, no pulse from 22:41:30."}
+  - {id: C08, source_chunk: F13, notebook: "Server Room 11-S: one badge-in (Elena, 22:19:07); door held open 22:26:14-22:28:02; no other badge events overnight."}
+  - {id: C09, source_chunk: F14, notebook: "Lobby Turnstile exit taps: Sam 19:42:10, Tobias 21:19:42 (no passage detected), Marisol 22:05:33; nothing for Grant."}
+  - {id: C10, source_chunk: F15, notebook: "Loading Dock LD-1: Sam IN 21:58:21, OUT 23:31:10."}
+  - {id: C11, source_chunk: F16, notebook: "Cage C3 door log: Sam IN 22:02:10, OUT 23:20:44."}
+  - {id: C12, source_chunk: F18, notebook: "Cloud-archived CAM-C3-INT footage: Sam in frame inside Cage C3 continuously 22:02:10-23:20:44."}
+  - {id: C13, source_chunk: F19, notebook: "Cage C3 PDU: 3.4 kW from 22:04 to 23:18 on outlets labelled mining-rig-07, no customer or billing link."}
+  - {id: C14, source_chunk: F17, notebook: "CAM-11E2 offline 22:00-23:30 for firmware rollout CHG-4471, filed 2026-11-10 and approved 2026-11-11."}
+  - {id: C15, source_chunk: F20, notebook: "Marisol's rideshare: pickup 22:09 at the Mission Street Entrance, drop-off 22:31 at her residence."}
+  - {id: C16, source_chunk: F21, notebook: "Marisol's smart lock: arrival 22:33:50, door unlocked 22:34:20."}
+  - {id: C17, source_chunk: F11, notebook: "Marisol and Elena met in Presidio Boardroom 20:29-20:55 on the crime night."}
+  - {id: C18, source_chunk: F12, notebook: "Marisol's 21:02 Slack asked Elena to consider a retention package and keep things quiet until Monday; Elena refused."}
+  - {id: C19, source_chunk: F22, notebook: "Northgate Secondaries emailed Grant about a 20:45 dinner at Marlowe & Pine and a Monday signing of Larkspur's Veridia shares."}
+  - {id: C20, source_chunk: F23, notebook: "Marlowe & Pine check #6302: Grant's card PIN entered at the table at 22:38:20; check closed 22:49; valet 22:51."}
+  - {id: C21, source_chunk: F24, notebook: "APAC Reseller Sync log: Tobias's phone joined 22:10:03-22:57:41 from the Veridia-Guest network at the Harlan Building, not his home ISP."}
+  - {id: C22, source_chunk: F25, notebook: "Tobias's phone was on AP-11-East (east side of floor 11) from 21:31:08 to 22:58:12."}
+  - {id: C23, source_chunk: F26, notebook: "Elena's account trashed her report and evidence folder at 22:52:31 from ELENA-LAPTOP-01, after her pulse was lost."}
+  - {id: C24, source_chunk: F10, notebook: "At 18:10 Elena told Tobias the report goes to the board at 08:00; he asked her to hold off."}

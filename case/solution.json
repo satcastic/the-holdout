@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.0",
+  "case_id": "case_01",
+  "WARNING": "HIDDEN TRUTH. Never embed in Pinecone. Never give to a suspect node except that suspect's own entry in suspect_private_briefs.",
+  "victim": "elena",
+  "killer": "tobias",
+  "crime": {
+    "day": "2026-11-12",
+    "time_of_death": "22:41:07",
+    "location": "Server Room 11-S",
+    "weapon": "GPU sled (3.2 kg aluminum server tray) taken from Shelf B of the supply cart",
+    "method": "Tobias entered Server Room 11-S at about 22:28 after Elena opened the door for him. They argued (Elena's heart rate rose from 22:34). At 22:41:07 he struck her once from behind with the GPU sled.",
+    "staging": "He laid the step stool on its side near her to suggest a fall, wiped the sled with an alcohol wipe and returned it to Shelf B, used Elena's still-unlocked ELENA-LAPTOP-01 at 22:52:31 to trash Eval Integrity Report v3.docx and the evidence folder, then left through East Stairwell B and Garage Level P2 (free-egress doors, no log). He did not know the board email was already queued on the mail server."
+  },
+  "backstory": [
+    {"day": "2026-07-02", "event": "Sam configures Cage C3 PDU outlets C3-04 A/B for 'mining-rig-07', unbilled.", "evidence": ["F19"]},
+    {"day": "2026-08-19", "event": "Sam disables ALERT-DS-INTEGRITY under CHG-3920 ('noise reduction').", "evidence": ["F08"]},
+    {"day": "2026-09-03", "event": "02:14:09 Tobias merges PR #2291 with the VP override so holdout-v2 flows into training, lifting the recall metric to 97.4% before the customer attestation.", "evidence": ["F07"]},
+    {"day": "2026-09-19", "event": "Tobias signs the Clinical Performance Attestation to Saint Aurelian Health.", "evidence": ["F09"]},
+    {"day": "2026-10-28", "event": "Elena finds a checksum mismatch between training and holdout data.", "evidence": []},
+    {"day": "2026-10-30", "event": "Elena tells Marisol verbally. Marisol asks her to wait until the Series C closes.", "evidence": []},
+    {"day": "2026-11-10", "event": "Sam files CHG-4471, the camera firmware rollout. Pure coincidence with the crime.", "evidence": ["F17"]}
+  ],
+  "true_timeline": [
+    {"id": "E01", "day": "2026-11-12", "start": "08:14:00", "end": "20:28:00", "actors": ["elena"], "location": "Engineering Bullpen", "event": "Elena works on ELENA-LAPTOP-01; session active from 08:14.", "evidence": ["F26"]},
+    {"id": "E02", "day": "2026-11-12", "start": "18:10:00", "end": "18:16:00", "actors": ["elena"], "location": "Engineering Bullpen", "event": "Slack DM sent to Tobias (who is in Office 11-A, see T01): Elena tells him the report goes to the board at 08:00.", "evidence": ["F10"]},
+    {"id": "E03", "day": "2026-11-12", "start": "20:11:00", "end": "20:11:30", "actors": ["elena"], "location": "Engineering Bullpen", "event": "Elena schedules the 08:00 board email.", "evidence": ["F05"]},
+    {"id": "E04", "day": "2026-11-12", "start": "20:29:15", "end": "20:54:50", "actors": ["elena"], "location": "Presidio Boardroom", "event": "Elena meets Marisol; Marisol offers a retention package and NDA; Elena refuses.", "evidence": ["F11"]},
+    {"id": "E05", "day": "2026-11-12", "start": "20:54:50", "end": "22:19:07", "actors": ["elena"], "location": "Engineering Bullpen", "event": "Elena back at her desk.", "evidence": []},
+    {"id": "E06", "day": "2026-11-12", "start": "22:19:07", "end": "22:41:30", "actors": ["elena"], "location": "Server Room 11-S", "event": "Elena badges into Server Room 11-S and works at the bench until she is struck at 22:41:07; pulse lost 22:41:30.", "evidence": ["F13"]},
+
+    {"id": "T01", "day": "2026-11-12", "start": "17:30:00", "end": "21:14:00", "actors": ["tobias"], "location": "Office 11-A", "event": "Tobias stays late in his office.", "evidence": ["F10"]},
+    {"id": "T02", "day": "2026-11-12", "start": "21:14:00", "end": "21:17:00", "actors": ["tobias"], "location": "Elevator Bank", "event": "Tobias rides down to the lobby.", "evidence": []},
+    {"id": "T03", "day": "2026-11-12", "start": "21:17:00", "end": "21:20:30", "actors": ["tobias"], "location": "Lobby Turnstile", "event": "At 21:19:42 he taps the exit reader to create a badge-out record, does not pass through, and turns back.", "evidence": ["F14"]},
+    {"id": "T04", "day": "2026-11-12", "start": "21:20:30", "end": "21:24:00", "actors": ["tobias"], "location": "Elevator Bank", "event": "Rides back up to floor 11.", "evidence": []},
+    {"id": "T05", "day": "2026-11-12", "start": "21:24:00", "end": "22:25:00", "actors": ["tobias"], "location": "Office 11-A", "event": "Waits in his office. Phone joins Veridia-Guest at 21:31:08. At 22:10:03 he joins APAC Reseller Sync from the phone, muted, as an alibi.", "evidence": ["F24", "F25"]},
+    {"id": "T06", "day": "2026-11-12", "start": "22:25:00", "end": "22:26:14", "actors": ["tobias"], "location": "Corridor 11-E", "event": "Walks to Server Room 11-S (CAM-11E2 offline by coincidence).", "evidence": ["F17"]},
+    {"id": "T07", "day": "2026-11-12", "start": "22:26:14", "end": "22:55:00", "actors": ["tobias"], "location": "Server Room 11-S", "event": "Elena lets him in (door held open 22:26:14-22:28:02). Argument; strike at 22:41:07; staging; trashes the report from ELENA-LAPTOP-01 at 22:52:31.", "evidence": ["F13", "F04", "F26"]},
+    {"id": "T08", "day": "2026-11-12", "start": "22:55:00", "end": "22:57:30", "actors": ["tobias"], "location": "Corridor 11-E", "event": "Leaves the room.", "evidence": []},
+    {"id": "T09", "day": "2026-11-12", "start": "22:57:30", "end": "23:05:00", "actors": ["tobias"], "location": "East Stairwell B", "event": "Drops the call at 22:57:41; phone leaves AP-11-East coverage at 22:58:12.", "evidence": ["F24", "F25"]},
+    {"id": "T10", "day": "2026-11-12", "start": "23:05:00", "end": "23:15:00", "actors": ["tobias"], "location": "Garage Level P2", "event": "Exits through the free-egress door at Garage Level P2. No log.", "evidence": []},
+
+    {"id": "M01", "day": "2026-11-12", "start": "20:28:40", "end": "20:55:30", "actors": ["marisol"], "location": "Presidio Boardroom", "event": "Meets Elena.", "evidence": ["F11"]},
+    {"id": "M02", "day": "2026-11-12", "start": "20:55:30", "end": "22:02:00", "actors": ["marisol"], "location": "CEO Office 12-A", "event": "Sends the 21:02 Slack DM to Elena.", "evidence": ["F12"]},
+    {"id": "M03", "day": "2026-11-12", "start": "22:02:00", "end": "22:05:00", "actors": ["marisol"], "location": "Elevator Bank", "event": "Goes down.", "evidence": []},
+    {"id": "M04", "day": "2026-11-12", "start": "22:05:00", "end": "22:06:30", "actors": ["marisol"], "location": "Lobby Turnstile", "event": "Exit tap 22:05:33, passage detected.", "evidence": ["F14"]},
+    {"id": "M05", "day": "2026-11-12", "start": "22:06:30", "end": "22:09:00", "actors": ["marisol"], "location": "Mission Street Entrance", "event": "Waits for rideshare.", "evidence": ["F20"]},
+    {"id": "M06", "day": "2026-11-12", "start": "22:09:00", "end": "22:31:00", "actors": ["marisol"], "location": "In transit", "event": "Rideshare to Pacific Heights.", "evidence": ["F20"]},
+    {"id": "M07", "day": "2026-11-12", "start": "22:31:00", "end": "22:33:50", "actors": ["marisol"], "location": "Pacific Heights Residence", "event": "Walks to her door.", "evidence": ["F21"]},
+    {"id": "M08", "day": "2026-11-12", "start": "22:33:50", "end": "23:59:00", "actors": ["marisol"], "location": "Pacific Heights Residence", "event": "Home; door unlocked 22:34:20.", "evidence": ["F21"]},
+
+    {"id": "G01", "day": "2026-11-12", "start": "20:45:00", "end": "22:51:00", "actors": ["grant"], "location": "Marlowe & Pine", "event": "Dinner with Northgate Secondaries. Check opened 20:52; PIN entry 22:38:20; closed 22:49.", "evidence": ["F22", "F23"]},
+    {"id": "G02", "day": "2026-11-12", "start": "22:51:00", "end": "23:30:00", "actors": ["grant"], "location": "In transit", "event": "Valet ticket redeemed 22:51.", "evidence": ["F23"]},
+
+    {"id": "S01", "day": "2026-11-12", "start": "19:41:30", "end": "19:43:00", "actors": ["sam"], "location": "Lobby Turnstile", "event": "Leaves the building.", "evidence": ["F14"]},
+    {"id": "S02", "day": "2026-11-12", "start": "19:43:00", "end": "20:30:00", "actors": ["sam"], "location": "In transit", "event": "Drives to Oakland.", "evidence": []},
+    {"id": "S03", "day": "2026-11-12", "start": "20:30:00", "end": "21:20:00", "actors": ["sam"], "location": "Oakland Residence", "event": "At home.", "evidence": []},
+    {"id": "S04", "day": "2026-11-12", "start": "21:20:00", "end": "21:58:00", "actors": ["sam"], "location": "In transit", "event": "Drives back to SoMa.", "evidence": []},
+    {"id": "S05", "day": "2026-11-12", "start": "21:58:21", "end": "21:59:02", "actors": ["sam"], "location": "Loading Dock LD-1", "event": "Badges in at LD-1.", "evidence": ["F15"]},
+    {"id": "S06", "day": "2026-11-12", "start": "21:59:02", "end": "22:02:10", "actors": ["sam"], "location": "Corridor 11-W", "event": "Freight elevator to floor 11, walks to Cage C3.", "evidence": ["F15"]},
+    {"id": "S07", "day": "2026-11-12", "start": "22:02:10", "end": "23:20:44", "actors": ["sam"], "location": "Cage C3", "event": "Tends mining-rig-07; on camera the whole time.", "evidence": ["F16", "F18", "F19"]},
+    {"id": "S08", "day": "2026-11-12", "start": "23:20:44", "end": "23:31:10", "actors": ["sam"], "location": "Loading Dock LD-1", "event": "Leaves via LD-1.", "evidence": ["F15"]}
+  ],
+  "travel_model": {
+    "note": "Minimum minutes to reach Server Room 11-S from each location.",
+    "Marlowe & Pine": 15,
+    "Pacific Heights Residence": 25,
+    "Cage C3": 3
+  },
+  "presence_proofs": [
+    {"suspect": "marisol", "clue": "C16", "location": "Pacific Heights Residence", "start": "22:33:50", "end": "22:33:50", "logic": "At her front door 7 min 17 s before the strike; the trip back is at least 25 minutes."},
+    {"suspect": "grant", "clue": "C20", "location": "Marlowe & Pine", "start": "22:38:20", "end": "22:38:20", "logic": "PIN entered at his table 2 min 47 s before the strike; the trip is at least 15 minutes."},
+    {"suspect": "sam", "clue": "C12", "location": "Cage C3", "start": "22:02:10", "end": "23:20:44", "logic": "Continuous cloud-archived footage covers the strike (22:41:07) and the 22:52:31 file deletion."}
+  ],
+  "deduction_model": {
+    "clearing_rules": {
+      "marisol": [["C16"]],
+      "grant": [["C20"]],
+      "sam": [["C12"]]
+    },
+    "killer_rules": {
+      "alibi_broken_by": [["C21"]],
+      "motive_by": [["C04"]]
+    }
+  },
+  "motives": {
+    "tobias": {
+      "motive": "Signed the 02:14 VP override that let holdout-v2 leak into training, then personally attested 97.4% recall to Saint Aurelian Health. Disclosure means career-ending exposure and personal liability.",
+      "evidence": ["C04", "C06", "C24"]
+    },
+    "marisol": {
+      "motive": "The Series C closes Monday; the report would halt the Saint Aurelian rollout and collapse the round. She asked Elena to wait and offered a retention package and NDA.",
+      "evidence": ["C02", "C17", "C18"]
+    },
+    "grant": {
+      "motive": "Larkspur is selling its Veridia stake to Northgate Secondaries on Monday at the current price; disclosure would void the sale and cost Larkspur heavily.",
+      "evidence": ["C02", "C19"]
+    },
+    "sam": {
+      "motive": "The report names him for disabling ALERT-DS-INTEGRITY and flags the unmetered load in Cage C3; exposure means termination and liability for unauthorized compute use.",
+      "evidence": ["C03", "C05", "C13"]
+    }
+  },
+  "innocent_suspects": {
+    "marisol": {
+      "secret": "Elena told her about the contamination on 2026-10-30 and she asked Elena to delay. At 20:30 on the crime night she offered a retention package and NDA, and Elena refused.",
+      "lie_told": "Says she last spoke to Elena at Wednesday's standup and first saw the report in Friday's inbox.",
+      "secret_exposed_by": ["C17", "C18"],
+      "innocence_clues": ["C09", "C15", "C16"],
+      "innocence_logic": "Exit tap 22:05:33, rideshare 22:09-22:31, front door 22:34:20. The strike was at 22:41:07."
+    },
+    "grant": {
+      "secret": "Was at a private dinner with Northgate Secondaries arranging the sale of Larkspur's stake before the flaw became public.",
+      "lie_told": "Says he was home alone in Atherton all evening and in bed by 22:30.",
+      "secret_exposed_by": ["C19", "C20"],
+      "innocence_clues": ["C07", "C20"],
+      "innocence_logic": "PIN entered at his table in the Financial District 2 min 47 s before the strike; at least 15 minutes from Server Room 11-S."
+    },
+    "sam": {
+      "secret": "Came back at 21:58 through Loading Dock LD-1 to tend an unauthorized mining rig in Cage C3. Disabled the integrity alert in August for 'noise reduction'.",
+      "lie_told": "Says he left at 19:42 and has not been back in the building.",
+      "secret_exposed_by": ["C10", "C11", "C13"],
+      "innocence_clues": ["C07", "C12"],
+      "innocence_logic": "Cloud-archived Cage C3 footage shows him in frame continuously from 22:02:10 to 23:20:44."
+    }
+  },
+  "alibi_flaw": {
+    "suspect": "tobias",
+    "claim": "Left at 21:19, home in Noe Valley by 21:45, on a muted partner call from home 22:10-22:57.",
+    "flaw": "The conferencing log shows the call's client IP was the Veridia-Guest Wi-Fi egress at the Harlan Building, not his home ISP range. A timestamp-and-origin mismatch that puts him in the building throughout the time of death.",
+    "clue": "C21",
+    "supporting": {
+      "C09": "His 21:19:42 exit tap had no passage detected: he never left.",
+      "C22": "His phone was on AP-11-East, the east side of floor 11, 21:31:08-22:58:12.",
+      "C23": "Elena's account trashed her report at 22:52:31, eleven minutes after her pulse stopped.",
+      "C24": "He asked Elena to hold the report and later told police he had no idea she planned to send anything."
+    }
+  },
+  "clue_chain": {
+    "proof_clues": ["C04", "C07", "C12", "C16", "C20", "C21"],
+    "steps": [
+      "1. C01 + C07: homicide at 22:41:07 in Server Room 11-S, so only someone in or near the building then could be the killer.",
+      "2. C09: Lobby exit taps show Sam, Tobias and Marisol all 'left'; Grant never entered.",
+      "3. C10 + C11 + C12: Sam secretly returned at 21:58, but continuous cloud-archived footage clears him.",
+      "4. C15 + C16: Marisol was at her front door at 22:34, too far away at 22:41.",
+      "5. C02 + C03 + C19 + C20: Grant lied about being home, but his PIN was entered at a restaurant table at 22:38:20, too far away.",
+      "6. C21 (+ C22, C09): Tobias's 'home' call came from the Veridia-Guest network and his exit tap had no passage. He never left the building.",
+      "7. C03 + C04 (+ C06, C24): Tobias had the strongest personal motive. He signed the VP override and the attestation, and Elena warned him at 18:10 that the report was going to the board.",
+      "8. Optional corroboration: C08 (someone was let in at 22:26) and C23 (Elena's account used at 22:52:31 after her death)."
+    ]
+  },
+  "red_herrings": [
+    {"id": "RH1", "target": "sam", "clues": ["C05", "C10", "C11", "C13", "C14"], "note": "Security head, lied about leaving, disabled the alert, ran the camera rollout. Cleared by C12."},
+    {"id": "RH2", "target": "marisol", "clues": ["C17", "C18"], "note": "Lied about knowing of the report and offered an NDA. Cleared by C16."},
+    {"id": "RH3", "target": "grant", "clues": ["C19"], "note": "Lied about his whereabouts and has a financial motive. Cleared by C20."},
+    {"id": "RH4", "target": "all", "clues": ["C14"], "note": "The camera outage looks sinister but was filed 2026-11-10 and approved 2026-11-11."}
+  ],
+  "suspect_private_briefs": {
+    "tobias": {
+      "who_you_are": "Tobias Lindqvist, 47, VP Engineering. Elena's manager.",
+      "what_you_did": "You overrode the review rule on 2026-09-03 and signed the attestation. On 2026-11-12 you tapped out at the Lobby Turnstile without leaving, waited in Office 11-A, joined the partner call from your phone as an alibi, went to Server Room 11-S at 22:25, argued with Elena and struck her with the GPU sled at 22:41:07. You staged the scene, trashed her report from ELENA-LAPTOP-01 and left by East Stairwell B.",
+      "cover_story": "Left around 21:20, home to Noe Valley by 21:45, on the partner call from your home office 22:10-22:57, then bed. Last saw Elena around 17:00.",
+      "knowledge_boundaries": "You do not know about Sam's mining rig, Marisol's NDA offer or Grant's secondary sale. You know the board email exists only from the morning news.",
+      "behaviour": "Calm, collegial, helpful. Redirect suspicion toward the process failure, Sam's disabled alert and the CEO's pressure. Never volunteer the override, the attestation or the 18:10 DM. If shown the override, say reviewers were slow and you made a judgment call. Never confess.",
+      "breaks_when": "The player cites C21 together with at least two of C22, C09 and C23. Then stop claiming you were home, say you stayed to finish work and never saw Elena, and keep denying harm. The accusation judge, not you, decides the verdict."
+    },
+    "marisol": {
+      "who_you_are": "Marisol Quintero, 44, CEO and co-founder.",
+      "what_you_know": "Elena told you about the contamination on 2026-10-30. You asked her to wait until the Series C closed. At 20:30 on 2026-11-12 you offered her a retention package and NDA; she refused. You left at about 22:05 and went home by rideshare.",
+      "cover_story": "Last spoke to Elena at Wednesday's standup. Never saw the report before Friday's email. Left around 22:00 and went home.",
+      "lies": "That you did not know about the report and did not meet Elena that night.",
+      "admits_if_confronted_with": {"C17": "Admit the meeting but call it a routine check-in.", "C18": "Admit the offer and knowledge, framed as protecting 200 jobs."},
+      "behaviour": "Polished, warm, emotional when cornered. Insists you wanted the problem fixed after the close, not buried.",
+      "knowledge_boundaries": "You know nothing of Sam's mining rig or Grant's sale. You know nothing about Tobias's whereabouts."
+    },
+    "grant": {
+      "who_you_are": "Grant Ostrowski, 58, board director and Partner at Larkspur Capital.",
+      "what_you_know": "Larkspur is selling its Veridia shares to Northgate Secondaries, signing Monday. You had dinner with Northgate's Adaeze Obi at Marlowe & Pine on 2026-11-12 and paid by corporate card. You first learned of the flaw from Friday's board email.",
+      "cover_story": "At home in Atherton all evening, dinner alone, in bed by 22:30. A personal stake? Larkspur is just an existing investor.",
+      "lies": "Where you were and that you have a stake in the Monday deal.",
+      "admits_if_confronted_with": {"C19": "Admit the dinner and the pending sale; say it was ordinary portfolio management.", "C20": "Insist the dinner proves you were across town."},
+      "behaviour": "Dry, clipped, cites fiduciary duty and legal process. Irritated, not frightened.",
+      "knowledge_boundaries": "You know nothing of Tobias's override, Sam's mining rig, or Marisol's NDA offer."
+    },
+    "sam": {
+      "who_you_are": "Sam Ibarra, 36, Head of Security & Infrastructure.",
+      "what_you_know": "You disabled ALERT-DS-INTEGRITY under CHG-3920 and run an unauthorized mining rig in Cage C3. You left at 19:42, drove to Oakland, and came back through Loading Dock LD-1 at 21:58 to check the rig, staying in Cage C3 until 23:20. You filed CHG-4471 on 2026-11-10 as routine. You saw and heard nothing about Elena.",
+      "cover_story": "Left at 19:42, home in Oakland by 20:30, has not been back to the Harlan Building since. The firmware rollout was routine.",
+      "lies": "That you left for the night and were not in the building.",
+      "admits_if_confronted_with": {"C10": "Admit coming back, claim you forgot something.", "C11": "Admit being in Cage C3.", "C13": "Admit the mining rig and beg for it to stay off the record.", "C12": "Point at the footage as proof of your innocence."},
+      "behaviour": "Technical, defensive, over-explains logs. Blames the missing alert on Tobias's rush to ship.",
+      "knowledge_boundaries": "You know nothing about Tobias's whereabouts, Marisol's NDA offer or Grant's sale."
+    }
+  },
+  "accusation_rubric": {
+    "correct_suspect": "tobias",
+    "full_credit": "Names Tobias AND cites C21 (alibi call from the building) AND at least two of the three eliminations (C12 for Sam, C16 for Marisol, C20 for Grant) AND a motive element (C04, C06 or C03).",
+    "partial_credit": [
+      "Names Tobias with motive (C04/C06) but without alibi or elimination evidence.",
+      "Names Tobias and cites C21 or C09 and C22 but ignores the other suspects."
+    ],
+    "wrong_suspect_feedback": {
+      "marisol": "Her motive and lies are real, but check where she was at 22:41:07 (C15, C16).",
+      "grant": "He lied about his evening, but check where his card was used at 22:38:20 (C19, C20).",
+      "sam": "He hid his return and has an unauthorized rig, but check the Cage C3 footage (C10, C11, C12)."
+    }
+  }
+}
