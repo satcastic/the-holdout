@@ -126,3 +126,11 @@ def test_free_start_matches_case():
     free = {c.id for c in CASE.fact_chunks if not c.reveal_condition}
     seen = set(itertools.chain.from_iterable(visible_chunk_ids(a, []) for a in valid_actors()))
     assert seen == free
+
+
+def test_adaptive_overfetch_finds_low_ranked_visible_chunks(retriever):
+    """At game start records can see only F05 and F11 out of 22 candidates. Even when the
+    over-fetch window is smaller than the gated crowd, both must still come back."""
+    res = retriever.search("records", "Cage C3 PDU mining rig power camera footage", [],
+                           top_k=5, overfetch=3)
+    assert {r.id for r in res} == {"F05", "F11"}

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "timestamp": "2026-10-17T12:01:35",
+    "timestamp": "2026-10-17T12:18:21",
     "llm_mode": "fake",
     "llm_model_main": "FakeLLM",
     "llm_model_fast": "FakeLLM",
@@ -32,7 +32,8 @@
           "C02",
           "C17",
           "C08",
-          "C10"
+          "C10",
+          "C09"
         ],
         "turns_left": 27
       },
@@ -57,21 +58,13 @@
         "turns_left": 25
       },
       {
-        "query": "Lobby Turnstile exit log for Thursday night",
-        "kind": "request_records",
-        "new": [
-          "C09",
-          "C11"
-        ],
-        "turns_left": 24
-      },
-      {
         "query": "Tobias's APAC Reseller Sync call participant log",
         "kind": "request_records",
         "new": [
-          "C21"
+          "C21",
+          "C11"
         ],
-        "turns_left": 23
+        "turns_left": 24
       },
       {
         "query": "Which Wi-Fi access point was Tobias's phone on?",
@@ -81,7 +74,7 @@
           "C24",
           "C19"
         ],
-        "turns_left": 22
+        "turns_left": 23
       },
       {
         "query": "CAM-C3-INT footage summary for Cage C3",
@@ -90,7 +83,7 @@
           "C12",
           "C13"
         ],
-        "turns_left": 21
+        "turns_left": 22
       },
       {
         "query": "Marisol's rideshare trip record",
@@ -98,7 +91,7 @@
         "new": [
           "C15"
         ],
-        "turns_left": 20
+        "turns_left": 21
       },
       {
         "query": "Pacific Heights Residence smart-lock and doorbell log",
@@ -106,7 +99,7 @@
         "new": [
           "C16"
         ],
-        "turns_left": 19
+        "turns_left": 20
       },
       {
         "query": "Marlowe & Pine point-of-sale record for Grant",
@@ -114,12 +107,12 @@
         "new": [
           "C20"
         ],
-        "turns_left": 18
+        "turns_left": 19
       },
       {
         "present_to": "tobias",
         "reply": "Tobias folds their hands. Fine. I stayed late to finish work. I never saw Elena.",
-        "turns_left": 17
+        "turns_left": 18
       }
     ],
     "verdict": {
@@ -154,7 +147,7 @@
       "accusations_left": 2,
       "game_over": true
     },
-    "turns_used": 13,
+    "turns_used": 12,
     "missing_clues": [],
     "full_credit": true
   },
@@ -292,7 +285,7 @@
   "summary": {
     "optimal_grade": "full_credit",
     "optimal_score": 96,
-    "turns_used": 13,
+    "turns_used": 12,
     "wrong_runs_all_wrong": true,
     "wrong_runs_end_after_two": true
   }

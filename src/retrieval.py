@@ -23,6 +23,7 @@ from src.models import CHANNELS, RetrievedChunk, load_case
 
 log = logging.getLogger(__name__)
 
+MAX_FETCH = 200  # upper bound for adaptive over-fetch
 RETURN_FIELDS = ["chunk_id", "type", "title", "day", "time", "location", "entities",
                  "known_by", "reveal_condition", "clue_id", "text"]
 
@@ -198,22 +199,9 @@ class Retriever:
         self._cache: OrderedDict[tuple, list[RetrievedChunk]] = OrderedDict()
         self._cache_size = cache_size
 
-    def search(
-        self, actor: str, query: str, discovered: Iterable[str], *,
-        top_k: int | None = None, overfetch: int | None = None, gating: bool = True,
-    ) -> list[RetrievedChunk]:
-        s = get_settings()
-        top_k = top_k or s.retrieval_top_k
-        overfetch = max(overfetch or s.retrieval_overfetch, top_k)
-        if actor not in valid_actors():
-            raise ValueError(f"unknown actor {actor!r}")
-        found = frozenset(discovered)
-        key = (actor, query, found, top_k, overfetch, gating)
-        if key in self._cache:
-            self._cache.move_to_end(key)
-            return list(self._cache[key])
-
-        hits = self.store.query(query, build_filter(actor), overfetch)
+    @staticmethod
+    def _post_filter(hits: list[Hit], actor: str, found: frozenset[str], gating: bool,
+                     top_k: int) -> list[RetrievedChunk]:
         survivors: list[RetrievedChunk] = []
         for h in hits:
             f = h.fields
@@ -229,6 +217,33 @@ class Retriever:
             ))
             if len(survivors) == top_k:
                 break
+        return survivors
+
+    def search(
+        self, actor: str, query: str, discovered: Iterable[str], *,
+        top_k: int | None = None, overfetch: int | None = None, gating: bool = True,
+    ) -> list[RetrievedChunk]:
+        s = get_settings()
+        top_k = top_k or s.retrieval_top_k
+        overfetch = max(overfetch or s.retrieval_overfetch, top_k)
+        if actor not in valid_actors():
+            raise ValueError(f"unknown actor {actor!r}")
+        found = frozenset(discovered)
+        key = (actor, query, found, top_k, overfetch, gating)
+        if key in self._cache:
+            self._cache.move_to_end(key)
+            return list(self._cache[key])
+
+        survivors: list[RetrievedChunk] = []
+        fetch = overfetch
+        while True:
+            hits = self.store.query(query, build_filter(actor), fetch)
+            survivors = self._post_filter(hits, actor, found, gating, top_k)
+            # Gating can discard most of an over-fetch; widen and retry while the store may
+            # still hold eligible chunks beyond the current window.
+            if len(survivors) >= top_k or len(hits) < fetch or fetch >= MAX_FETCH:
+                break
+            fetch = min(fetch * 3, MAX_FETCH)
 
         self._cache[key] = survivors
         if len(self._cache) > self._cache_size:

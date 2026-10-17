@@ -1,10 +1,11 @@
+PYTHON ?= python3.12
 PY := .venv/bin/python
 ARGS ?=
 
 .PHONY: install ingest api web test lint eval graph validate
 
 install:
-	python3.12 -m venv .venv
+	$(PYTHON) -m venv .venv
 	$(PY) -m pip install -q --upgrade pip
 	$(PY) -m pip install -q -r requirements.txt
 	cd web && npm install
@@ -31,6 +32,7 @@ test: lint
 eval:
 	$(PY) -m eval.retrieval_eval $(ARGS)
 	$(PY) -m eval.leak_tests $(ARGS)
+	$(PY) -m eval.leak_tests --simulate-leaky $(ARGS)
 	$(PY) -m eval.playthrough $(ARGS)
 	$(PY) -m eval.report
 

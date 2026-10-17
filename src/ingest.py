@@ -58,6 +58,9 @@ def main() -> None:
     from src.retrieval import get_store
 
     s = get_settings()
+    if s.vector_backend != "pinecone":
+        print("VECTOR_BACKEND is not 'pinecone': nothing will be persisted. "
+              "Set VECTOR_BACKEND=pinecone and PINECONE_API_KEY in .env.")
     store = get_store()
     if hasattr(store, "ensure_index"):
         store.ensure_index()
