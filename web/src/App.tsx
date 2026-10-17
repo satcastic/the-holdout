@@ -31,6 +31,8 @@ export default function App() {
   const [accuseOpen, setAccuseOpen] = useState(false);
   const [lastFeedback, setLastFeedback] = useState<string | null>(null);
   const [ending, setEnding] = useState<{ verdict: Verdict; reply: string } | null>(null);
+  // Set when the case closes, however the accusation was made (button or typed text).
+  const [closing, setClosing] = useState<{ verdict: Verdict; reply: string } | null>(null);
   const [tab, setTab] = useState<Tab>("talk");
   const nextId = useRef(1);
 
@@ -74,6 +76,7 @@ export default function App() {
     setSelected(new Set());
     setFresh(new Set());
     setEnding(null);
+    setClosing(null);
     setLastFeedback(null);
   };
 
@@ -84,6 +87,7 @@ export default function App() {
     setStatusLabel("Reading your notes");
     push("player", playerText);
     let replyId: number | null = null;
+    let lastReply = "";
     try {
       await sendTurn(session.session_id, text, action, {
         onStatus: setStatusLabel,
@@ -91,6 +95,7 @@ export default function App() {
         onToken: (tok) => setStreaming((s) => (s ? { ...s, text: s.text + tok } : s)),
         onReplyEnd: (speaker, full) => {
           setStreaming(null);
+          lastReply = full;
           replyId = push(speaker, full);
         },
         onState: (st) => {
@@ -101,6 +106,12 @@ export default function App() {
             setTranscript((t) => t.map((e) => (e.id === id ? { ...e, newClues: st.new_clues } : e)));
           }
           if (st.current_focus && st.current_focus !== focus) setFocus(st.current_focus);
+          if (st.game_over && st.verdict) {
+            const closed = { verdict: st.verdict, reply: lastReply };
+            setClosing(closed);
+            // Give the player a moment to read the DA's reply, then open the verdict.
+            window.setTimeout(() => setEnding(closed), 2500);
+          }
         },
       });
     } catch (e) {
@@ -157,6 +168,7 @@ export default function App() {
     push("narrator", res.reply);
     if (res.state.game_over) {
       setAccuseOpen(false);
+      setClosing({ verdict: res.verdict, reply: res.reply });
       setEnding({ verdict: res.verdict, reply: res.reply });
     } else {
       setLastFeedback(res.reply);
@@ -191,14 +203,20 @@ export default function App() {
               />
             </div>
           </div>
-          <button
-            type="button"
-            className="btn border-blood text-blood hover:bg-blood hover:text-paper"
-            onClick={() => setAccuseOpen(true)}
-            disabled={busy}
-          >
-            Accuse
-          </button>
+          {status.game_over && closing ? (
+            <button type="button" className="btn btn-amber" onClick={() => setEnding(closing)}>
+              See the verdict
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="btn border-blood text-blood hover:bg-blood hover:text-paper"
+              onClick={() => setAccuseOpen(true)}
+              disabled={busy || status.game_over}
+            >
+              Accuse
+            </button>
+          )}
         </div>
       </header>
 
