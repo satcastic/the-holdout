@@ -26,6 +26,7 @@ lint:
 
 test: lint
 	LLM_MODE=fake VECTOR_BACKEND=memory $(PY) -m pytest -q
+	@if [ -d web/node_modules ]; then cd web && npm run --silent typecheck && echo "web typecheck ok"; fi
 
 eval:
 	$(PY) -m eval.retrieval_eval $(ARGS)

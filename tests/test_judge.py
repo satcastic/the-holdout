@@ -51,11 +51,14 @@ def test_wrong_suspect_scores_zero_with_rubric_feedback():
     assert v2.grade == "case_lost" and v2.game_over and v2.accusations_left == 0
 
 
-def test_feedback_masks_unseen_time_of_death():
+def test_feedback_masks_unseen_times():
     fb = R.wrong_suspect_feedback["marisol"]
     assert "22:41:07" in fb
-    assert "22:41:07" not in sanitize_feedback(fb, load_case(), ["F02", "F05"])
+    masked = sanitize_feedback(fb, load_case(), ["F02", "F05"])
+    assert "22:41:07" not in masked and "the critical moment" in masked
     assert "22:41:07" in sanitize_feedback(fb, load_case(), ["F04"])
+    grant = sanitize_feedback(R.wrong_suspect_feedback["grant"], load_case(), [])
+    assert "22:38:20" not in grant and "time of death" not in grant
 
 
 def test_accuse_through_graph_is_free_and_ends_game():

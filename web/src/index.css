@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #141317;
+  --color-panel: #1c1b20;
+  --color-raised: #24232a;
+  --color-line: #33313a;
+  --color-paper: #ece6da;
+  --color-muted: #9d968a;
+  --color-dim: #6f6a62;
+  --color-amber: #d9a441;
+  --color-amber-deep: #a87a26;
+  --color-blood: #b4553f;
+
+  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Film grain: a fixed SVG noise overlay that never intercepts clicks. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0.07;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  /* Soft vignette for the lamp-lit feel. */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 49;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 50% 30%, transparent 55%, rgb(0 0 0 / 0.45) 100%);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--color-amber);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-line px-3 py-2 text-sm font-medium tracking-wide text-paper transition-colors hover:border-muted disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .btn-amber {
+    @apply border-amber bg-amber text-ink hover:border-amber-deep hover:bg-amber-deep;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-xs tracking-wide text-paper transition-colors hover:border-amber hover:text-amber disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .label {
+    @apply font-mono text-[10px] uppercase tracking-[0.2em] text-muted;
+  }
+  .panel {
+    @apply border border-line bg-panel/80;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.dot {
+  animation: blink 1.2s infinite;
+}
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.35s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot,
+  .rise {
+    animation: none;
+  }
+}

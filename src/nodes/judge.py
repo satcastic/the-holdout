@@ -132,7 +132,7 @@ def sanitize_feedback(text: str, case: Case, chunks_seen: Iterable[str]) -> str:
     hidden = extract_tokens(unseen_text) - extract_tokens(seen_text)
     for tok in sorted(hidden, key=len, reverse=True):
         if re.fullmatch(r"\d{2}:\d{2}(:\d{2})?", tok):
-            text = text.replace(tok, "the time of death")
+            text = text.replace(tok, "the critical moment")
     return text
 
 
