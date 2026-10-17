@@ -14,6 +14,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
 
 from src.config import get_settings
+from src.nodes.checker import checker, deflect, route_after_checker
 from src.nodes.clues import clues, finalize, respond
 from src.nodes.records import records
 from src.nodes.retrieve import retrieve, route_after_retrieve
@@ -29,6 +30,8 @@ STATUS = {
     "retrieve": "Pulling the case files",
     "suspect": "The suspect considers the question",
     "records": "Checking the logs",
+    "checker": "Cross-checking the statement",
+    "deflect": "Cross-checking the statement",
     "finalize": "Wrapping up",
     "clues": "Updating the evidence locker",
     "judge": "The DA reviews your case",
@@ -51,9 +54,12 @@ def _accuse_placeholder(state: GameState, rt: Runtime) -> dict[str, Any]:
 def build_graph(rt: Runtime | None = None, checkpointer: Any = None):
     rt = rt or Runtime()
     g = StateGraph(GameState)
-    for name, fn in [("router", router), ("rewrite", rewrite), ("retrieve", retrieve),
-                     ("suspect", suspect), ("records", records), ("finalize", finalize),
-                     ("clues", clues), ("judge", _accuse_placeholder), ("respond", respond)]:
+    nodes = [("router", router), ("rewrite", rewrite), ("retrieve", retrieve),
+             ("suspect", suspect), ("records", records), ("finalize", finalize),
+             ("clues", clues), ("judge", _accuse_placeholder), ("respond", respond)]
+    if rt.checker_enabled:
+        nodes += [("checker", checker), ("deflect", deflect)]
+    for name, fn in nodes:
         g.add_node(name, _bind(fn, rt))
 
     g.add_edge(START, "router")
@@ -62,8 +68,19 @@ def build_graph(rt: Runtime | None = None, checkpointer: Any = None):
     g.add_edge("rewrite", "retrieve")
     g.add_conditional_edges("retrieve", route_after_retrieve,
                             {"suspect": "suspect", "records": "records"})
-    g.add_edge("suspect", "finalize")
-    g.add_edge("records", "finalize")
+    if rt.checker_enabled:
+        g.add_edge("suspect", "checker")
+        g.add_edge("records", "checker")
+        max_retries = rt.settings.max_retries
+        g.add_conditional_edges(
+            "checker", lambda st: route_after_checker(st, max_retries),
+            {"pass": "finalize", "retry_suspect": "suspect", "retry_records": "records",
+             "deflect": "deflect"},
+        )
+        g.add_edge("deflect", "clues")
+    else:  # evaluation baseline only: drafts go straight to the player
+        g.add_edge("suspect", "finalize")
+        g.add_edge("records", "finalize")
     g.add_edge("finalize", "clues")
     g.add_edge("clues", "respond")
     g.add_edge("judge", "respond")

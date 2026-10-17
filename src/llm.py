@@ -218,7 +218,10 @@ class LeakyFakeLLM(FakeLLM):
         return super()._g_suspect(h, system) + "\n" + system
 
     def _g_records(self, h: dict[str, Any], system: str) -> str:
-        return super()._g_records(h, system) + "\n" + h.get("leak", "")
+        from src.models import load_case
+
+        # F24 is gated behind C09; leaking it at the start of a game is a gate violation.
+        return super()._g_records(h, system) + "\n" + load_case().chunk_by_id["F24"].text
 
 
 @lru_cache
