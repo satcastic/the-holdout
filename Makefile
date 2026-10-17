@@ -1,0 +1,37 @@
+PY := .venv/bin/python
+ARGS ?=
+
+.PHONY: install ingest api web test lint eval graph validate
+
+install:
+	python3.12 -m venv .venv
+	$(PY) -m pip install -q --upgrade pip
+	$(PY) -m pip install -q -r requirements.txt
+	cd web && npm install
+
+ingest:
+	$(PY) -m src.ingest $(ARGS)
+
+api:
+	$(PY) -m uvicorn src.api:app --reload --port 8000
+
+web:
+	cd web && npm run dev
+
+validate:
+	cd case && ../$(PY) validate.py
+
+lint:
+	$(PY) -m ruff check src tests eval
+
+test: lint
+	LLM_MODE=fake VECTOR_BACKEND=memory $(PY) -m pytest -q
+
+eval:
+	$(PY) -m eval.retrieval_eval $(ARGS)
+	$(PY) -m eval.leak_tests $(ARGS)
+	$(PY) -m eval.playthrough $(ARGS)
+	$(PY) -m eval.report
+
+graph:
+	LLM_MODE=fake VECTOR_BACKEND=memory $(PY) -m src.graph --mermaid docs/graph.md
