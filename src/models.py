@@ -1,6 +1,6 @@
 """Pydantic models for the public case data (case_01.yaml) and shared value types.
 
-Nothing in this module reads solution.json; see truth_store.py for that.
+Nothing in this module reads the hidden solution; see truth_store.py for that.
 """
 
 from __future__ import annotations

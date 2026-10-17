@@ -1,7 +1,7 @@
 """Ingest fact chunks from case_01.yaml into the vector store.
 
 Idempotent (upsert by chunk_id). `--reset` wipes the namespace first. Reads only the
-public case file; solution.json is never touched here.
+public case file; the hidden solution is never touched here.
 
 Usage: python -m src.ingest [--reset]
 """
