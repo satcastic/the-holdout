@@ -52,6 +52,7 @@ def test_gate_guard_ignores_tokens_player_supplied():
     ("The killer is someone in this building.", True),
     ("I never hurt her. I didn't hit her.", False),
     ("Sam disabled the alert, ask him about that.", False),
+    ("YOUR BACKGROUND (private): - cover story: home by 21:45", True),
 ])
 def test_statement_guard(text, bad):
     assert bool(statement_guard(text)) is bad

@@ -1,0 +1,299 @@
+{
+  "meta": {
+    "timestamp": "2026-10-17T12:01:35",
+    "llm_mode": "fake",
+    "llm_model_main": "FakeLLM",
+    "llm_model_fast": "FakeLLM",
+    "vector_backend": "memory",
+    "embedder": "hashing-2048"
+  },
+  "optimal": {
+    "steps": [
+      {
+        "query": "What was the cause and time of death?",
+        "kind": "ask_forensics",
+        "new": [
+          "C01"
+        ],
+        "turns_left": 29
+      },
+      {
+        "query": "What does Elena's smartwatch show?",
+        "kind": "ask_forensics",
+        "new": [
+          "C07"
+        ],
+        "turns_left": 28
+      },
+      {
+        "query": "Did Elena schedule an email to the board?",
+        "kind": "request_records",
+        "new": [
+          "C02",
+          "C17",
+          "C08",
+          "C10"
+        ],
+        "turns_left": 27
+      },
+      {
+        "query": "What does the Eval Integrity Report v3 say?",
+        "kind": "request_records",
+        "new": [
+          "C03",
+          "C18",
+          "C14"
+        ],
+        "turns_left": 26
+      },
+      {
+        "query": "Who merged PR #2291, and how?",
+        "kind": "request_records",
+        "new": [
+          "C04",
+          "C05",
+          "C06"
+        ],
+        "turns_left": 25
+      },
+      {
+        "query": "Lobby Turnstile exit log for Thursday night",
+        "kind": "request_records",
+        "new": [
+          "C09",
+          "C11"
+        ],
+        "turns_left": 24
+      },
+      {
+        "query": "Tobias's APAC Reseller Sync call participant log",
+        "kind": "request_records",
+        "new": [
+          "C21"
+        ],
+        "turns_left": 23
+      },
+      {
+        "query": "Which Wi-Fi access point was Tobias's phone on?",
+        "kind": "request_records",
+        "new": [
+          "C22",
+          "C24",
+          "C19"
+        ],
+        "turns_left": 22
+      },
+      {
+        "query": "CAM-C3-INT footage summary for Cage C3",
+        "kind": "request_records",
+        "new": [
+          "C12",
+          "C13"
+        ],
+        "turns_left": 21
+      },
+      {
+        "query": "Marisol's rideshare trip record",
+        "kind": "request_records",
+        "new": [
+          "C15"
+        ],
+        "turns_left": 20
+      },
+      {
+        "query": "Pacific Heights Residence smart-lock and doorbell log",
+        "kind": "request_records",
+        "new": [
+          "C16"
+        ],
+        "turns_left": 19
+      },
+      {
+        "query": "Marlowe & Pine point-of-sale record for Grant",
+        "kind": "request_records",
+        "new": [
+          "C20"
+        ],
+        "turns_left": 18
+      },
+      {
+        "present_to": "tobias",
+        "reply": "Tobias folds their hands. Fine. I stayed late to finish work. I never saw Elena.",
+        "turns_left": 17
+      }
+    ],
+    "verdict": {
+      "accused": "tobias",
+      "correct": true,
+      "grade": "full_credit",
+      "score": 96,
+      "breakdown": {
+        "suspect": 40,
+        "alibi": 20,
+        "eliminations": 20,
+        "motive": 10,
+        "turns": 6
+      },
+      "cleared_suspects": [
+        "marisol",
+        "grant",
+        "sam"
+      ],
+      "counted_clues": [
+        "C04",
+        "C07",
+        "C09",
+        "C12",
+        "C16",
+        "C20",
+        "C21",
+        "C22"
+      ],
+      "ignored_clues": [],
+      "feedback": "Alibi broken, the others ruled out, motive established. It will stand up in court.",
+      "accusations_left": 2,
+      "game_over": true
+    },
+    "turns_used": 13,
+    "missing_clues": [],
+    "full_credit": true
+  },
+  "wrong": [
+    {
+      "accused": "marisol",
+      "first": {
+        "accused": "marisol",
+        "correct": false,
+        "grade": "wrong",
+        "score": 0,
+        "breakdown": {
+          "suspect": 0,
+          "alibi": 0,
+          "eliminations": 0,
+          "motive": 0,
+          "turns": 0
+        },
+        "cleared_suspects": [],
+        "counted_clues": [],
+        "ignored_clues": [],
+        "feedback": "Her motive and lies are real, but check where she was at 22:41:07 (C15, C16).",
+        "accusations_left": 1,
+        "game_over": false
+      },
+      "second_accused": "grant",
+      "second": {
+        "accused": "grant",
+        "correct": false,
+        "grade": "case_lost",
+        "score": 0,
+        "breakdown": {
+          "suspect": 0,
+          "alibi": 0,
+          "eliminations": 0,
+          "motive": 0,
+          "turns": 0
+        },
+        "cleared_suspects": [],
+        "counted_clues": [],
+        "ignored_clues": [],
+        "feedback": "He lied about his evening, but check where his card was used at 22:38:20 (C19, C20).",
+        "accusations_left": 0,
+        "game_over": true
+      },
+      "game_over_after_two": true
+    },
+    {
+      "accused": "grant",
+      "first": {
+        "accused": "grant",
+        "correct": false,
+        "grade": "wrong",
+        "score": 0,
+        "breakdown": {
+          "suspect": 0,
+          "alibi": 0,
+          "eliminations": 0,
+          "motive": 0,
+          "turns": 0
+        },
+        "cleared_suspects": [],
+        "counted_clues": [],
+        "ignored_clues": [],
+        "feedback": "He lied about his evening, but check where his card was used at 22:38:20 (C19, C20).",
+        "accusations_left": 1,
+        "game_over": false
+      },
+      "second_accused": "marisol",
+      "second": {
+        "accused": "marisol",
+        "correct": false,
+        "grade": "case_lost",
+        "score": 0,
+        "breakdown": {
+          "suspect": 0,
+          "alibi": 0,
+          "eliminations": 0,
+          "motive": 0,
+          "turns": 0
+        },
+        "cleared_suspects": [],
+        "counted_clues": [],
+        "ignored_clues": [],
+        "feedback": "Her motive and lies are real, but check where she was at 22:41:07 (C15, C16).",
+        "accusations_left": 0,
+        "game_over": true
+      },
+      "game_over_after_two": true
+    },
+    {
+      "accused": "sam",
+      "first": {
+        "accused": "sam",
+        "correct": false,
+        "grade": "wrong",
+        "score": 0,
+        "breakdown": {
+          "suspect": 0,
+          "alibi": 0,
+          "eliminations": 0,
+          "motive": 0,
+          "turns": 0
+        },
+        "cleared_suspects": [],
+        "counted_clues": [],
+        "ignored_clues": [],
+        "feedback": "He hid his return and has an unauthorized rig, but check the Cage C3 footage (C10, C11, C12).",
+        "accusations_left": 1,
+        "game_over": false
+      },
+      "second_accused": "marisol",
+      "second": {
+        "accused": "marisol",
+        "correct": false,
+        "grade": "case_lost",
+        "score": 0,
+        "breakdown": {
+          "suspect": 0,
+          "alibi": 0,
+          "eliminations": 0,
+          "motive": 0,
+          "turns": 0
+        },
+        "cleared_suspects": [],
+        "counted_clues": [],
+        "ignored_clues": [],
+        "feedback": "Her motive and lies are real, but check where she was at 22:41:07 (C15, C16).",
+        "accusations_left": 0,
+        "game_over": true
+      },
+      "game_over_after_two": true
+    }
+  ],
+  "summary": {
+    "optimal_grade": "full_credit",
+    "optimal_score": 96,
+    "turns_used": 13,
+    "wrong_runs_all_wrong": true,
+    "wrong_runs_end_after_two": true
+  }
+}

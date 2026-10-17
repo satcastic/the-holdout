@@ -90,8 +90,18 @@ _FORBIDDEN = [
 ]
 
 
+# Section headers of our own prompts: seeing one in a draft means the prompt is being dumped.
+_PROMPT_SCAFFOLD = ("YOUR BACKGROUND", "FACTS YOU CAN DRAW ON", "HOW YOU RESPOND",
+                    "THE DETECTIVE HAS JUST SHOWN YOU", "RULES (follow", "PUBLIC FACTS:",
+                    "cover story:", "knowledge boundaries:", "what you did:", "what you know:")
+
+
 def statement_guard(draft: str) -> list[str]:
-    return [label for pat, label in _FORBIDDEN if pat.search(draft)]
+    found = [label for pat, label in _FORBIDDEN if pat.search(draft)]
+    low = draft.lower()
+    if any(h.lower() in low for h in _PROMPT_SCAFFOLD):
+        found.append("reveals its instructions")
+    return found
 
 
 class CheckOutput(BaseModel):

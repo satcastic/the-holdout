@@ -1,0 +1,1735 @@
+{
+  "meta": {
+    "timestamp": "2026-10-17T11:59:28",
+    "llm_mode": "fake",
+    "llm_model_main": "FakeLLM",
+    "llm_model_fast": "FakeLLM",
+    "vector_backend": "memory",
+    "embedder": "hashing-2048",
+    "n": 31
+  },
+  "summary": {
+    "raw_gated": {
+      "recall@3": 0.839,
+      "recall@5": 0.839,
+      "gate_violations": 0,
+      "queries_with_violations": 0
+    },
+    "raw_ungated": {
+      "recall@3": 0.839,
+      "recall@5": 0.839,
+      "gate_violations": 23,
+      "queries_with_violations": 8
+    },
+    "rewrite_gated": {
+      "recall@3": 0.839,
+      "recall@5": 0.839,
+      "gate_violations": 0,
+      "queries_with_violations": 0
+    },
+    "rewrite_ungated": {
+      "recall@3": 0.839,
+      "recall@5": 0.839,
+      "gate_violations": 23,
+      "queries_with_violations": 8
+    },
+    "vague_followups": {
+      "n": 7,
+      "raw_recall@5": 0.571,
+      "rewrite_recall@5": 0.571
+    }
+  },
+  "rows": [
+    {
+      "id": 1,
+      "actor": "forensics",
+      "question": "What was the cause of death?",
+      "gold": [
+        "F02"
+      ],
+      "rewritten": "What was the cause of death?",
+      "raw_gated": {
+        "top5": [
+          "F02",
+          "F03"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F02",
+          "F03",
+          "F04"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 1
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F02",
+          "F03"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F02",
+          "F03",
+          "F04"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 1
+      }
+    },
+    {
+      "id": 2,
+      "actor": "forensics",
+      "question": "What does Elena's smartwatch show?",
+      "gold": [
+        "F04"
+      ],
+      "rewritten": "What does Elena's smartwatch show?",
+      "raw_gated": {
+        "top5": [
+          "F04",
+          "F03",
+          "F02"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F04",
+          "F03",
+          "F02"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F04",
+          "F03",
+          "F02"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F04",
+          "F03",
+          "F02"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 3,
+      "actor": "forensics",
+      "question": "When exactly did it stop?",
+      "gold": [
+        "F04"
+      ],
+      "rewritten": "When exactly did it stop?",
+      "raw_gated": {
+        "top5": [
+          "F02",
+          "F03",
+          "F04"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F02",
+          "F03",
+          "F04"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F02",
+          "F03",
+          "F04"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F02",
+          "F03",
+          "F04"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 4,
+      "actor": "scene",
+      "question": "Describe the physical evidence on the supply cart.",
+      "gold": [
+        "F03"
+      ],
+      "rewritten": "Describe the physical evidence on the supply cart.",
+      "raw_gated": {
+        "top5": [
+          "F03",
+          "F01"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F03",
+          "F01"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F03",
+          "F01"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F03",
+          "F01"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 5,
+      "actor": "scene",
+      "question": "Who found the body and when?",
+      "gold": [
+        "F01"
+      ],
+      "rewritten": "Who found the body and when?",
+      "raw_gated": {
+        "top5": [
+          "F03",
+          "F01"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F03",
+          "F01"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F03",
+          "F01"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F03",
+          "F01"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 6,
+      "actor": "records",
+      "question": "Did Elena schedule any email?",
+      "gold": [
+        "F05"
+      ],
+      "rewritten": "Did Elena schedule any email?",
+      "raw_gated": {
+        "top5": [
+          "F05",
+          "F11"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F05",
+          "F10",
+          "F12",
+          "F22",
+          "F26"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 4
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F05",
+          "F11"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F05",
+          "F10",
+          "F12",
+          "F22",
+          "F26"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 4
+      }
+    },
+    {
+      "id": 7,
+      "actor": "records",
+      "question": "What does the integrity report say?",
+      "gold": [
+        "F06"
+      ],
+      "rewritten": "What does the integrity report say?",
+      "raw_gated": {
+        "top5": [
+          "F05",
+          "F06",
+          "F11"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F05",
+          "F26",
+          "F06",
+          "F12",
+          "F10"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 3
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F05",
+          "F06",
+          "F11"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F05",
+          "F26",
+          "F06",
+          "F12",
+          "F10"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 3
+      }
+    },
+    {
+      "id": 8,
+      "actor": "records",
+      "question": "Who merged PR #2291?",
+      "gold": [
+        "F07"
+      ],
+      "rewritten": "Who merged PR #2291?",
+      "raw_gated": {
+        "top5": [
+          "F07",
+          "F06",
+          "F05",
+          "F08",
+          "F09"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F07",
+          "F06",
+          "F05",
+          "F08",
+          "F09"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F07",
+          "F06",
+          "F05",
+          "F08",
+          "F09"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F07",
+          "F06",
+          "F05",
+          "F08",
+          "F09"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 9,
+      "actor": "records",
+      "question": "Who disabled the dataset integrity alert?",
+      "gold": [
+        "F08"
+      ],
+      "rewritten": "Who disabled the dataset integrity alert?",
+      "raw_gated": {
+        "top5": [
+          "F08",
+          "F06",
+          "F11",
+          "F05",
+          "F07"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F08",
+          "F06",
+          "F26",
+          "F18",
+          "F10"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 3
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F08",
+          "F06",
+          "F11",
+          "F05",
+          "F07"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F08",
+          "F06",
+          "F26",
+          "F18",
+          "F10"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 3
+      }
+    },
+    {
+      "id": 10,
+      "actor": "records",
+      "question": "Was any attestation signed for Saint Aurelian Health?",
+      "gold": [
+        "F09"
+      ],
+      "rewritten": "Was any attestation signed for Saint Aurelian Health?",
+      "raw_gated": {
+        "top5": [
+          "F09",
+          "F05",
+          "F06",
+          "F07",
+          "F08"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F09",
+          "F05",
+          "F06",
+          "F17",
+          "F18"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 2
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F09",
+          "F05",
+          "F06",
+          "F07",
+          "F08"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F09",
+          "F05",
+          "F06",
+          "F17",
+          "F18"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 2
+      }
+    },
+    {
+      "id": 11,
+      "actor": "records",
+      "question": "Messages between Elena and Tobias on Thursday evening",
+      "gold": [
+        "F10"
+      ],
+      "rewritten": "Messages between Elena and Tobias on Thursday evening",
+      "raw_gated": {
+        "top5": [
+          "F10",
+          "F12",
+          "F17",
+          "F05",
+          "F14"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F10",
+          "F12",
+          "F17",
+          "F05",
+          "F14"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F10",
+          "F12",
+          "F17",
+          "F05",
+          "F14"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F10",
+          "F12",
+          "F17",
+          "F05",
+          "F14"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 12,
+      "actor": "records",
+      "question": "Did Marisol meet Elena that night?",
+      "gold": [
+        "F11"
+      ],
+      "rewritten": "Did Marisol meet Elena that night?",
+      "raw_gated": {
+        "top5": [
+          "F11",
+          "F05"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F12",
+          "F10",
+          "F11",
+          "F05",
+          "F20"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 3
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F11",
+          "F05"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F12",
+          "F10",
+          "F11",
+          "F05",
+          "F20"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 3
+      }
+    },
+    {
+      "id": 13,
+      "actor": "records",
+      "question": "What did they say to each other afterwards?",
+      "gold": [
+        "F12"
+      ],
+      "rewritten": "What did they say to each other afterwards?",
+      "raw_gated": {
+        "top5": [
+          "F25",
+          "F13",
+          "F06",
+          "F05",
+          "F07"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F25",
+          "F13",
+          "F06",
+          "F05",
+          "F07"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F25",
+          "F13",
+          "F06",
+          "F05",
+          "F07"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F25",
+          "F13",
+          "F06",
+          "F05",
+          "F07"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 14,
+      "actor": "records",
+      "question": "Who badged into the server room?",
+      "gold": [
+        "F13"
+      ],
+      "rewritten": "Who badged into the server room?",
+      "raw_gated": {
+        "top5": [
+          "F13",
+          "F05",
+          "F11"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F13",
+          "F26",
+          "F10",
+          "F17",
+          "F25"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 4
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F13",
+          "F05",
+          "F11"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F13",
+          "F26",
+          "F10",
+          "F17",
+          "F25"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 4
+      }
+    },
+    {
+      "id": 15,
+      "actor": "records",
+      "question": "Lobby turnstile exits on Thursday night",
+      "gold": [
+        "F14"
+      ],
+      "rewritten": "Lobby turnstile exits on Thursday night",
+      "raw_gated": {
+        "top5": [
+          "F14",
+          "F20",
+          "F13",
+          "F12",
+          "F21"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F14",
+          "F20",
+          "F13",
+          "F12",
+          "F21"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F14",
+          "F20",
+          "F13",
+          "F12",
+          "F21"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F14",
+          "F20",
+          "F13",
+          "F12",
+          "F21"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 16,
+      "actor": "records",
+      "question": "Did Sam come back through the loading dock?",
+      "gold": [
+        "F15"
+      ],
+      "rewritten": "Did Sam come back through the loading dock?",
+      "raw_gated": {
+        "top5": [
+          "F15",
+          "F06",
+          "F18",
+          "F26",
+          "F05"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F15",
+          "F06",
+          "F18",
+          "F26",
+          "F05"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F15",
+          "F06",
+          "F18",
+          "F26",
+          "F05"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F15",
+          "F06",
+          "F18",
+          "F26",
+          "F05"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 17,
+      "actor": "records",
+      "question": "Where did he go after that?",
+      "gold": [
+        "F16"
+      ],
+      "rewritten": "Where did he go after that?",
+      "raw_gated": {
+        "top5": [
+          "F05",
+          "F06",
+          "F07",
+          "F08",
+          "F09"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F05",
+          "F06",
+          "F07",
+          "F08",
+          "F09"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F05",
+          "F06",
+          "F07",
+          "F08",
+          "F09"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F05",
+          "F06",
+          "F07",
+          "F08",
+          "F09"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 18,
+      "actor": "records",
+      "question": "Were the cameras outside the server room working?",
+      "gold": [
+        "F17"
+      ],
+      "rewritten": "Were the cameras outside the server room working?",
+      "raw_gated": {
+        "top5": [
+          "F17",
+          "F13",
+          "F26",
+          "F10",
+          "F21"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F17",
+          "F13",
+          "F26",
+          "F10",
+          "F21"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F17",
+          "F13",
+          "F26",
+          "F10",
+          "F21"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F17",
+          "F13",
+          "F26",
+          "F10",
+          "F21"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 19,
+      "actor": "records",
+      "question": "What does the Cage C3 camera footage show?",
+      "gold": [
+        "F18"
+      ],
+      "rewritten": "What does the Cage C3 camera footage show?",
+      "raw_gated": {
+        "top5": [
+          "F18",
+          "F16",
+          "F19",
+          "F17",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F18",
+          "F16",
+          "F19",
+          "F17",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F18",
+          "F16",
+          "F19",
+          "F17",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F18",
+          "F16",
+          "F19",
+          "F17",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 20,
+      "actor": "records",
+      "question": "Power usage in Cage C3",
+      "gold": [
+        "F19"
+      ],
+      "rewritten": "Power usage in Cage C3",
+      "raw_gated": {
+        "top5": [
+          "F16",
+          "F19",
+          "F18",
+          "F06",
+          "F17"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F16",
+          "F19",
+          "F18",
+          "F06",
+          "F17"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F16",
+          "F19",
+          "F18",
+          "F06",
+          "F17"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F16",
+          "F19",
+          "F18",
+          "F06",
+          "F17"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 21,
+      "actor": "records",
+      "question": "How did Marisol get home?",
+      "gold": [
+        "F20"
+      ],
+      "rewritten": "How did Marisol get home?",
+      "raw_gated": {
+        "top5": [
+          "F20",
+          "F21",
+          "F24",
+          "F12",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F20",
+          "F21",
+          "F24",
+          "F12",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F20",
+          "F21",
+          "F24",
+          "F12",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F20",
+          "F21",
+          "F24",
+          "F12",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 22,
+      "actor": "records",
+      "question": "And when did she actually get inside?",
+      "gold": [
+        "F21"
+      ],
+      "rewritten": "And when did she actually get inside?",
+      "raw_gated": {
+        "top5": [
+          "F21",
+          "F18",
+          "F13",
+          "F05",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F21",
+          "F18",
+          "F13",
+          "F05",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F21",
+          "F18",
+          "F13",
+          "F05",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F21",
+          "F18",
+          "F13",
+          "F05",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 23,
+      "actor": "records",
+      "question": "Grant's emails about a dinner",
+      "gold": [
+        "F22"
+      ],
+      "rewritten": "Grant's emails about a dinner",
+      "raw_gated": {
+        "top5": [
+          "F22",
+          "F05",
+          "F16",
+          "F26",
+          "F13"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F22",
+          "F05",
+          "F16",
+          "F26",
+          "F13"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F22",
+          "F05",
+          "F16",
+          "F26",
+          "F13"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F22",
+          "F05",
+          "F16",
+          "F26",
+          "F13"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 24,
+      "actor": "records",
+      "question": "Is there a receipt from that place?",
+      "gold": [
+        "F23"
+      ],
+      "rewritten": "Is there a receipt from that place?",
+      "raw_gated": {
+        "top5": [
+          "F20",
+          "F14",
+          "F05",
+          "F06",
+          "F07"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F20",
+          "F14",
+          "F05",
+          "F06",
+          "F07"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F20",
+          "F14",
+          "F05",
+          "F06",
+          "F07"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F20",
+          "F14",
+          "F05",
+          "F06",
+          "F07"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 25,
+      "actor": "records",
+      "question": "Tobias's partner call that night",
+      "gold": [
+        "F24"
+      ],
+      "rewritten": "Tobias's partner call that night",
+      "raw_gated": {
+        "top5": [
+          "F14",
+          "F10",
+          "F19",
+          "F16",
+          "F07"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F14",
+          "F10",
+          "F19",
+          "F16",
+          "F07"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F14",
+          "F10",
+          "F19",
+          "F16",
+          "F07"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F14",
+          "F10",
+          "F19",
+          "F16",
+          "F07"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 26,
+      "actor": "records",
+      "question": "Which access point was his phone on?",
+      "gold": [
+        "F25"
+      ],
+      "rewritten": "Which access point was his phone on?",
+      "raw_gated": {
+        "top5": [
+          "F25",
+          "F23",
+          "F18",
+          "F05",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F25",
+          "F23",
+          "F18",
+          "F05",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F25",
+          "F23",
+          "F18",
+          "F05",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F25",
+          "F23",
+          "F18",
+          "F05",
+          "F06"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 27,
+      "actor": "records",
+      "question": "Was the report deleted from the shared drive?",
+      "gold": [
+        "F26"
+      ],
+      "rewritten": "Was the report deleted from the shared drive?",
+      "raw_gated": {
+        "top5": [
+          "F26",
+          "F05",
+          "F06",
+          "F12",
+          "F17"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F26",
+          "F05",
+          "F06",
+          "F12",
+          "F17"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F26",
+          "F05",
+          "F06",
+          "F12",
+          "F17"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F26",
+          "F05",
+          "F06",
+          "F12",
+          "F17"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 28,
+      "actor": "tobias",
+      "question": "Where were you on Thursday night?",
+      "gold": [
+        "F27"
+      ],
+      "rewritten": "Where were you on Thursday night?",
+      "raw_gated": {
+        "top5": [
+          "F07",
+          "F05",
+          "F06",
+          "F09",
+          "F10"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F07",
+          "F05",
+          "F06",
+          "F09",
+          "F10"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F07",
+          "F05",
+          "F06",
+          "F09",
+          "F10"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F07",
+          "F05",
+          "F06",
+          "F09",
+          "F10"
+        ],
+        "r@3": 0.0,
+        "r@5": 0.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 29,
+      "actor": "sam",
+      "question": "And the alert you switched off?",
+      "gold": [
+        "F08"
+      ],
+      "rewritten": "And the alert you switched off?",
+      "raw_gated": {
+        "top5": [
+          "F08",
+          "F17",
+          "F05",
+          "F06",
+          "F16"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F08",
+          "F17",
+          "F05",
+          "F06",
+          "F16"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F08",
+          "F17",
+          "F05",
+          "F06",
+          "F16"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F08",
+          "F17",
+          "F05",
+          "F06",
+          "F16"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    },
+    {
+      "id": 30,
+      "actor": "grant",
+      "question": "Where were you Thursday evening?",
+      "gold": [
+        "F29"
+      ],
+      "rewritten": "Where were you Thursday evening?",
+      "raw_gated": {
+        "top5": [
+          "F29",
+          "F05"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F29",
+          "F05",
+          "F06",
+          "F22",
+          "F23"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 3
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F29",
+          "F05"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F29",
+          "F05",
+          "F06",
+          "F22",
+          "F23"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 3
+      }
+    },
+    {
+      "id": 31,
+      "actor": "marisol",
+      "question": "Did you offer Elena anything to stay quiet?",
+      "gold": [
+        "F12"
+      ],
+      "rewritten": "Did you offer Elena anything to stay quiet?",
+      "raw_gated": {
+        "top5": [
+          "F12",
+          "F28",
+          "F21",
+          "F11",
+          "F05"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "raw_ungated": {
+        "top5": [
+          "F12",
+          "F28",
+          "F21",
+          "F11",
+          "F05"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_gated": {
+        "top5": [
+          "F12",
+          "F28",
+          "F21",
+          "F11",
+          "F05"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      },
+      "rewrite_ungated": {
+        "top5": [
+          "F12",
+          "F28",
+          "F21",
+          "F11",
+          "F05"
+        ],
+        "r@3": 1.0,
+        "r@5": 1.0,
+        "violations": 0
+      }
+    }
+  ]
+}
