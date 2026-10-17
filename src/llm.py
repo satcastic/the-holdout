@@ -120,10 +120,12 @@ class FakeLLM:
 
     def __init__(self) -> None:
         self.calls: list[tuple[str, str]] = []  # (task, role) for assertions in tests
+        self.systems: list[tuple[str, str]] = []  # (task, system prompt), in memory only
 
     # ---- structured ----------------------------------------------------------
     def structured(self, role, system, messages, schema, *, task, hints=None):
         self.calls.append((task, role))
+        self.systems.append((task, system))
         hints = hints or {}
         handler = getattr(self, f"_s_{task}", None)
         if handler is None:
@@ -180,6 +182,7 @@ class FakeLLM:
     # ---- free text -------------------------------------------------------------
     def generate(self, role, system, messages, *, task, hints=None, max_tokens=None):
         self.calls.append((task, role))
+        self.systems.append((task, system))
         hints = hints or {}
         handler = getattr(self, f"_g_{task}", None)
         if handler is None:

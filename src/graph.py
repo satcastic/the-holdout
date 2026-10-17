@@ -16,6 +16,7 @@ from langgraph.graph import END, START, StateGraph
 from src.config import get_settings
 from src.nodes.checker import checker, deflect, route_after_checker
 from src.nodes.clues import clues, finalize, respond
+from src.nodes.judge import judge
 from src.nodes.records import records
 from src.nodes.retrieve import retrieve, route_after_retrieve
 from src.nodes.rewrite import rewrite
@@ -47,16 +48,12 @@ def _bind(fn: Callable[[GameState, Runtime], dict[str, Any]], rt: Runtime):
     return node
 
 
-def _accuse_placeholder(state: GameState, rt: Runtime) -> dict[str, Any]:
-    return {"final_reply": "The DA is not taking accusations yet.", "reply_speaker": "narrator"}
-
-
 def build_graph(rt: Runtime | None = None, checkpointer: Any = None):
     rt = rt or Runtime()
     g = StateGraph(GameState)
     nodes = [("router", router), ("rewrite", rewrite), ("retrieve", retrieve),
              ("suspect", suspect), ("records", records), ("finalize", finalize),
-             ("clues", clues), ("judge", _accuse_placeholder), ("respond", respond)]
+             ("clues", clues), ("judge", judge), ("respond", respond)]
     if rt.checker_enabled:
         nodes += [("checker", checker), ("deflect", deflect)]
     for name, fn in nodes:

@@ -15,6 +15,7 @@ TRUTH = "src/truth_store.py"
 ALLOWED = {
     "get_private_brief": {"src/nodes/suspect.py"},
     "get_rubric": {"src/nodes/judge.py"},
+    "Rubric": {"src/nodes/judge.py"},  # type only
     "get_reveal": {"src/api.py"},
 }
 
