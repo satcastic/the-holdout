@@ -60,11 +60,11 @@ In Terminal (macOS/Linux) or PowerShell (Windows):
 
 ```
 cd Desktop
-git clone https://github.com/YOUR-USERNAME/the-holdout.git
+git clone https://github.com/satcastic/the-holdout.git
 cd the-holdout
 ```
 
-Replace `YOUR-USERNAME/the-holdout` with the address of the repository you are downloading
+Replace `satcastic/the-holdout` with the address of the repository you are downloading
 (the green **Code** button on GitHub shows it). You now have a `the-holdout` folder on your
 Desktop and your terminal is inside it.
 

@@ -21,7 +21,7 @@ experience needed)
 Already have Python 3.11+ and Node 22+? On macOS/Linux:
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/the-holdout.git && cd the-holdout
+git clone https://github.com/satcastic/the-holdout.git && cd the-holdout
 cp .env.example .env      # add your ANTHROPIC_API_KEY and PINECONE_API_KEY
 make install && make ingest
 make api                  # terminal 1
