@@ -1,4 +1,5 @@
-PYTHON ?= python3.12
+# First available of 3.12 / 3.13 / 3.11 / python3; override with `make install PYTHON=...`
+PYTHON ?= $(shell command -v python3.12 || command -v python3.13 || command -v python3.11 || command -v python3)
 PY := .venv/bin/python
 ARGS ?=
 
