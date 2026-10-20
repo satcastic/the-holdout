@@ -10,3 +10,6 @@ web/node_modules/
 web/dist/
 .DS_Store
 *.tsbuildinfo
+
+# Private local notes (never uploaded)
+_local/

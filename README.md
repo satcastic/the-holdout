@@ -120,3 +120,7 @@ docs/       design, decisions, plan, graph, screenshots
 ## Acknowledgements
 
 Course project for *RAG Systems and Agentic Workflows with Pinecone and LangGraph* (Coursera).
+
+## License
+
+[MIT](LICENSE) © 2026 Satvik Akshintala
